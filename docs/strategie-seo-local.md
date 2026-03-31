@@ -92,9 +92,9 @@ Chaque page ville doit avoir :
 ## 5. Plan de déploiement par phases
 
 ### Phase 1 — Pages racines (priorité haute)
-- [ ] `/maroc/` — page silo Maroc
-- [ ] `/france/` — page silo France
-- [ ] `/artisans-france-maroc/` — page passerelle
+- [x] `/maroc/` — page silo Maroc (CRÉÉE — 2026-03-31)
+- [x] `/france/` — page silo France (CRÉÉE — 2026-03-31)
+- [x] `/artisans-france-maroc/` — page passerelle (fusionnée via index)
 
 ### Phase 2 — Villes Maroc (8 villes)
 - [x] `/maroc/meknes/` ✅ fait
