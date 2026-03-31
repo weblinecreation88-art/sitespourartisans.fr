@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — sitespourartisans.fr</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #0f172a;
+      --blue:   #1d4ed8;
+      --green:  #16a34a;
+      --orange: #f97316;
+      --red:    #dc2626;
+      --purple: #7c3aed;
+      --bg:     #f1f5f9;
+      --white:  #ffffff;
+      --border: #e2e8f0;
+      --text:   #1e293b;
+      --muted:  #64748b;
+      --radius: 10px;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 100%);
+    }
+    .login-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .login-logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+    .login-logo span { color: var(--orange); }
+    .login-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      letter-spacing: 0.2em;
+    }
+    .login-box input:focus { outline: none; border-color: var(--orange); }
+    .login-btn {
+      width: 100%;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-btn:hover { background: #ea6c0a; }
+    .login-error {
+      color: var(--red);
+      font-size: 0.82rem;
+      margin-top: 0.7rem;
+      display: none;
+    }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; }
+
+    /* Topbar */
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .topbar-brand { font-size: 1rem; font-weight: 800; }
+    .topbar-brand span { color: var(--orange); }
+    .topbar-right { display: flex; align-items: center; gap: 1rem; }
+    .live-badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.75rem; color: #86efac;
+    }
+    .live-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+    .logout-btn {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .logout-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* Content */
+    .content { max-width: 1300px; margin: 0 auto; padding: 2rem; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-left: 4px solid transparent;
+    }
+    .stat-card.total  { border-left-color: var(--blue); }
+    .stat-card.today  { border-left-color: var(--green); }
+    .stat-card.week   { border-left-color: var(--orange); }
+    .stat-card.score  { border-left-color: var(--purple); }
+    .stat-label {
+      font-size: 0.73rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: #fff7ed;
+    }
+    .search-input {
+      flex: 1;
+      max-width: 280px;
+      padding: 0.45rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .search-input:focus { outline: none; border-color: var(--orange); }
+    .export-btn {
+      margin-left: auto;
+      padding: 0.45rem 1rem;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .export-btn:hover { background: #1e3a5f; }
+
+    /* Table */
+    .table-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #f8fafc; }
+    th {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; cursor: pointer; }
+
+    /* Score badge */
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .score-hot  { background: #fee2e2; color: #dc2626; }
+    .score-warm { background: #fef3c7; color: #d97706; }
+    .score-cold { background: #f1f5f9; color: #64748b; }
+
+    /* Statut */
+    .statut-badge {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .statut-badge:hover { opacity: 0.75; }
+    .statut-nouveau   { background: #dbeafe; color: #1d4ed8; }
+    .statut-contacte  { background: #fef3c7; color: #d97706; }
+    .statut-traite    { background: #dcfce7; color: #16a34a; }
+
+    /* Métier pill */
+    .metier-pill {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: var(--muted);
+    }
+
+    /* Empty / loading */
+    .empty-state, .loading-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .empty-state .big { font-size: 3rem; margin-bottom: 0.5rem; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transform: translateY(20px);
+      transition: transform 0.2s;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .modal-header h2 { font-size: 1.1rem; font-weight: 800; }
+    .modal-close {
+      background: none; border: none;
+      font-size: 1.4rem; cursor: pointer;
+      color: var(--muted); line-height: 1;
+      padding: 0; flex-shrink: 0;
+    }
+    .modal-body { padding: 1.5rem; }
+    .field-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .field-item label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .field-item p {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .field-item.full { grid-column: 1 / -1; }
+    .modal-actions {
+      padding: 1rem 1.5rem 1.5rem;
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .modal-actions a, .modal-actions button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .modal-actions a:hover, .modal-actions button:hover { opacity: 0.8; }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-email    { background: var(--blue); color: #fff; }
+    .btn-tel      { background: var(--navy); color: #fff; }
+
+    .score-big {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin: 0 auto 1rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hide-mobile { display: none; }
+    }
+    @media (max-width: 600px) {
+      .content { padding: 1rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+      .field-group { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── LOGIN ── -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">site<span>artisan</span>.fr</div>
+      <p class="login-sub">Tableau de bord admin — accès sécurisé</p>
+      <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="current-password" />
+      <button class="login-btn" onclick="checkLogin()">Accéder →</button>
+      <p class="login-error" id="loginError">❌ Mot de passe incorrect</p>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
+  <div id="dashboard">
+
+    <div class="topbar">
+      <div class="topbar-brand">site<span>artisan</span>.fr — <span style="font-weight:400; font-size:0.85rem; color:#94a3b8;">Admin</span></div>
+      <div class="topbar-right">
+        <div class="live-badge"><div class="live-dot"></div> Temps réel</div>
+        <button class="logout-btn" onclick="logout()">Déconnexion</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- STATS -->
+      <div class="stats-grid">
+        <div class="stat-card total">
+          <div class="stat-label">Total leads</div>
+          <div class="stat-value" id="statTotal">—</div>
+          <div class="stat-sub">depuis le début</div>
+        </div>
+        <div class="stat-card today">
+          <div class="stat-label">Aujourd'hui</div>
+          <div class="stat-value" id="statToday">—</div>
+          <div class="stat-sub">nouveaux leads</div>
+        </div>
+        <div class="stat-card week">
+          <div class="stat-label">Cette semaine</div>
+          <div class="stat-value" id="statWeek">—</div>
+          <div class="stat-sub">leads reçus</div>
+        </div>
+        <div class="stat-card score">
+          <div class="stat-label">Score moyen</div>
+          <div class="stat-value" id="statScore">—</div>
+          <div class="stat-sub">sur 100</div>
+        </div>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <button class="filter-btn active" onclick="setFilter('tous', this)">Tous</button>
+        <button class="filter-btn" onclick="setFilter('nouveau', this)">🔵 Nouveaux</button>
+        <button class="filter-btn" onclick="setFilter('contacte', this)">🟡 Contactés</button>
+        <button class="filter-btn" onclick="setFilter('traite', this)">🟢 Traités</button>
+        <input class="search-input" type="text" id="searchInput" placeholder="🔍 Rechercher…" oninput="renderTable()" />
+        <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+      </div>
+
+      <!-- TABLE -->
+      <div class="table-wrap">
+        <div class="loading-state" id="loadingState">⏳ Chargement des leads…</div>
+        <table id="leadsTable" style="display:none">
+          <thead>
+            <tr>
+              <th>Score</th>
+              <th>Nom</th>
+              <th>Métier</th>
+              <th>Ville</th>
+              <th class="hide-mobile">Téléphone</th>
+              <th class="hide-mobile">Budget</th>
+              <th class="hide-mobile">Urgence</th>
+              <th>Date</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="leadsBody"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState" style="display:none">
+          <div class="big">📭</div>
+          Aucun lead ne correspond à votre recherche.
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /dashboard -->
+
+  <!-- ── MODAL DÉTAIL ── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modalBox">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalName">—</h2>
+          <p id="modalMetier" style="font-size:0.82rem; color:#64748b; margin-top:0.2rem;"></p>
+        </div>
+        <button class="modal-close" onclick="closeModalDirect()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="modalScoreWrap" style="margin-bottom:1.5rem; text-align:center;">
+          <div class="score-big" id="modalScoreBig"></div>
+          <p style="font-size:0.78rem; color:#64748b;">Score de qualification</p>
+        </div>
+        <div class="field-group">
+          <div class="field-item"><label>Email</label><p id="mEmail">—</p></div>
+          <div class="field-item"><label>Téléphone / WhatsApp</label><p id="mTel">—</p></div>
+          <div class="field-item"><label>Ville</label><p id="mVille">—</p></div>
+          <div class="field-item"><label>Établissement</label><p id="mEtab">—</p></div>
+          <div class="field-item"><label>Déjà un site ?</label><p id="mSite">—</p></div>
+          <div class="field-item"><label>Budget</label><p id="mBudget">—</p></div>
+          <div class="field-item"><label>Urgence</label><p id="mUrgence">—</p></div>
+          <div class="field-item"><label>Provenance</label><p id="mProvenance">—</p></div>
+          <div class="field-item full"><label>Message</label><p id="mMessage" style="white-space:pre-wrap;">—</p></div>
+          <div class="field-item"><label>Source URL</label><p id="mSource" style="font-size:0.75rem; word-break:break-all;">—</p></div>
+          <div class="field-item"><label>Référent</label><p id="mReferrer" style="font-size:0.75rem; word-break:break-all;">—</p></div>
+        </div>
+      </div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <!-- FIREBASE -->
+  <script type="module">
+    import { initializeApp }                    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, doc, updateDoc, orderBy, query }
+                                                from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey:            "AIzaSyDgvdX2MbNcJB4oQmeyrf_KRXgav84vyY4",
+      authDomain:        "sitespourartisans-e1949.firebaseapp.com",
+      projectId:         "sitespourartisans-e1949",
+      storageBucket:     "sitespourartisans-e1949.firebasestorage.app",
+      messagingSenderId: "904883909116",
+      appId:             "1:904883909116:web:f3aba7e0f1a4029af98279"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    /* ── Mot de passe admin ── */
+    const ADMIN_PWD = "siteartisan2024";
+
+    window.checkLogin = () => {
+      const val = document.getElementById('pwdInput').value;
+      if (val === ADMIN_PWD) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display   = 'block';
+        initDashboard();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('pwdInput').classList.add('shake');
+        setTimeout(() => document.getElementById('pwdInput').classList.remove('shake'), 500);
+      }
+    };
+
+    document.getElementById('pwdInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') window.checkLogin();
+    });
+
+    window.logout = () => {
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('dashboard').style.display   = 'none';
+      document.getElementById('pwdInput').value = '';
+    };
+
+    /* ── Data ── */
+    let allLeads = [];
+    let currentFilter = 'tous';
+
+    function initDashboard() {
+      const q = query(collection(db, 'leads'), orderBy('date', 'desc'));
+      onSnapshot(q, (snap) => {
+        allLeads = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        updateStats();
+        renderTable();
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('leadsTable').style.display = 'table';
+      });
+    }
+
+    /* ── Stats ── */
+    function updateStats() {
+      const now   = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const week  = new Date(today); week.setDate(today.getDate() - 7);
+
+      const todayCount = allLeads.filter(l => {
+        if (!l.date) return false;
+        return l.date.toDate() >= today;
+      }).length;
+
+      const weekCount = allLeads.filter(l => {
+        if (!l.date) return false;
+        return l.date.toDate() >= week;
+      }).length;
+
+      const avgScore = allLeads.length
+        ? Math.round(allLeads.reduce((s, l) => s + (l.score || 0), 0) / allLeads.length)
+        : 0;
+
+      document.getElementById('statTotal').textContent = allLeads.length;
+      document.getElementById('statToday').textContent = todayCount;
+      document.getElementById('statWeek').textContent  = weekCount;
+      document.getElementById('statScore').textContent = avgScore;
+    }
+
+    /* ── Render table ── */
+    window.renderTable = () => {
+      const search = (document.getElementById('searchInput').value || '').toLowerCase();
+      let filtered = allLeads.filter(l => {
+        if (currentFilter !== 'tous' && (l.statut || 'nouveau') !== currentFilter) return false;
+        if (search) {
+          const blob = [l.nom, l.ville, l.metier, l.email, l.telephone, l.message].join(' ').toLowerCase();
+          if (!blob.includes(search)) return false;
+        }
+        return true;
+      });
+
+      const tbody = document.getElementById('leadsBody');
+      tbody.innerHTML = '';
+
+      if (filtered.length === 0) {
+        document.getElementById('emptyState').style.display = 'block';
+        return;
+      }
+      document.getElementById('emptyState').style.display = 'none';
+
+      filtered.forEach(lead => {
+        const tr = document.createElement('tr');
+        tr.onclick = () => openModal(lead);
+        tr.innerHTML = `
+          <td>${scoreBadge(lead.score)}</td>
+          <td><strong>${esc(lead.nom || '—')}</strong></td>
+          <td><span class="metier-pill">${esc(formatMetier(lead.metier))}</span></td>
+          <td>${esc(lead.ville || '—')}</td>
+          <td class="hide-mobile">${esc(lead.telephone || '—')}</td>
+          <td class="hide-mobile">${esc(lead.budget || '—')}</td>
+          <td class="hide-mobile">${esc(lead.urgence || '—')}</td>
+          <td style="font-size:0.78rem; color:#64748b;">${formatDate(lead.date)}</td>
+          <td onclick="event.stopPropagation()">${statutBadge(lead)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    };
+
+    /* ── Filtre ── */
+    window.setFilter = (val, btn) => {
+      currentFilter = val;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTable();
+    };
+
+    /* ── Statut ── */
+    window.cycleStatut = async (id, current) => {
+      const order = ['nouveau', 'contacte', 'traite'];
+      const next  = order[(order.indexOf(current) + 1) % order.length];
+      await updateDoc(doc(db, 'leads', id), { statut: next });
+    };
+
+    function statutBadge(lead) {
+      const s = lead.statut || 'nouveau';
+      const labels = { nouveau: '🔵 Nouveau', contacte: '🟡 Contacté', traite: '🟢 Traité' };
+      return `<span class="statut-badge statut-${s}" onclick="cycleStatut('${lead.id}','${s}')" title="Cliquer pour changer">${labels[s] || s}</span>`;
+    }
+
+    /* ── Modal ── */
+    window.openModal = (lead) => {
+      document.getElementById('modalName').textContent   = lead.nom || '—';
+      document.getElementById('modalMetier').textContent = formatMetier(lead.metier);
+      document.getElementById('mEmail').textContent      = lead.email || '—';
+      document.getElementById('mTel').textContent        = lead.telephone || '—';
+      document.getElementById('mVille').textContent      = lead.ville || '—';
+      document.getElementById('mEtab').textContent       = lead.nom_etablissement || '—';
+      document.getElementById('mSite').textContent       = lead.a_deja_site || '—';
+      document.getElementById('mBudget').textContent     = lead.budget || '—';
+      document.getElementById('mUrgence').textContent    = lead.urgence || '—';
+      document.getElementById('mProvenance').textContent = lead.provenance || '—';
+      document.getElementById('mMessage').textContent    = lead.message || '(aucun message)';
+      document.getElementById('mSource').textContent     = lead.source_url || '—';
+      document.getElementById('mReferrer').textContent   = lead.referrer || '—';
+
+      const scoreBig = document.getElementById('modalScoreBig');
+      const s = lead.score || 0;
+      scoreBig.textContent = s;
+      scoreBig.className = 'score-big ' + (s >= 70 ? 'score-hot' : s >= 40 ? 'score-warm' : 'score-cold');
+
+      // Actions rapides
+      const actions = document.getElementById('modalActions');
+      actions.innerHTML = '';
+
+      if (lead.telephone) {
+        const wa = document.createElement('a');
+        wa.href = `https://wa.me/${lead.telephone.replace(/\D/g,'')}?text=Bonjour%20${encodeURIComponent(lead.nom)}%2C%20j%27ai%20bien%20re%C3%A7u%20votre%20demande%20de%20site%20vitrine%20sur%20sitespourartisans.fr.%20Je%20vous%20contacte%20pour%20vous%20pr%C3%A9senter%20nos%20offres.`;
+        wa.target = '_blank';
+        wa.className = 'btn-whatsapp';
+        wa.textContent = '💬 WhatsApp';
+        actions.appendChild(wa);
+
+        const tel = document.createElement('a');
+        tel.href = `tel:${lead.telephone}`;
+        tel.className = 'btn-tel';
+        tel.textContent = '📞 Appeler';
+        actions.appendChild(tel);
+      }
+
+      if (lead.email) {
+        const mail = document.createElement('a');
+        mail.href = `mailto:${lead.email}?subject=Votre%20site%20vitrine%20%E2%80%94%20sitespourartisans.fr&body=Bonjour%20${encodeURIComponent(lead.nom)}%2C%0A%0AJ%27ai%20bien%20re%C3%A7u%20votre%20demande%20de%20site%20vitrine%20sur%20sitespourartisans.fr.%0A%0A`;
+        mail.className = 'btn-email';
+        mail.textContent = '✉️ Email';
+        actions.appendChild(mail);
+      }
+
+      document.getElementById('modalOverlay').classList.add('open');
+    };
+
+    window.closeModal = (e) => {
+      if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+    };
+    window.closeModalDirect = () => {
+      document.getElementById('modalOverlay').classList.remove('open');
+    };
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModalDirect();
+    });
+
+    /* ── Export CSV ── */
+    window.exportCSV = () => {
+      const headers = ['Nom','Établissement','Email','Téléphone','Ville','Métier','Déjà site','Budget','Urgence','Score','Statut','Date','Message','Provenance'];
+      const rows = allLeads.map(l => [
+        l.nom, l.nom_etablissement, l.email, l.telephone, l.ville,
+        formatMetier(l.metier), l.a_deja_site, l.budget, l.urgence,
+        l.score, l.statut || 'nouveau', formatDate(l.date),
+        (l.message || '').replace(/\n/g,' '), l.provenance
+      ].map(v => `"${(v||'').toString().replace(/"/g,'""')}"`));
+
+      const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+      const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url; a.download = `leads-siteartisan-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click(); URL.revokeObjectURL(url);
+    };
+
+    /* ── Helpers ── */
+    function esc(s) {
+      return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function formatDate(ts) {
+      if (!ts) return '—';
+      try {
+        const d = ts.toDate();
+        return d.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      } catch { return '—'; }
+    }
+    function formatMetier(m) {
+      const map = {
+        coiffeur:'Coiffeur', salon_beaute:'Salon beauté',
+        blanchisserie:'Blanchisserie', boulangerie:'Boulangerie', autre:'Autre'
+      };
+      return map[m] || m || '—';
+    }
+    function scoreBadge(score) {
+      const s = score || 0;
+      const cls = s >= 70 ? 'score-hot' : s >= 40 ? 'score-warm' : 'score-cold';
+      return `<span class="score-badge ${cls}">${s}</span>`;
+    }
+  </script>
+
+</body>
+</html>

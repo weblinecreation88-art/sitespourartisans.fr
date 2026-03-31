@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salon de Coiffure Élégance – Casablanca | Coupes, Colorations, Soins Capillaires</title>
+  <meta name="description" content="Salon de coiffure à Casablanca. Coupes tendance, colorations, soins kératine, lissages. Réservation par WhatsApp, tarifs clairs. Ouvert 7j/7." />
+  <meta name="keywords" content="coiffeur Casablanca, salon coiffure Maroc, coupe cheveux femme Casablanca, coloration Casablanca, coiffeur homme Maroc, coiffeur France, salon de coiffure Paris" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #9d174d;
+      --rose-lt: #fce7f3;
+      --gold:    #b45309;
+      --dark:    #1c1917;
+      --bg:      #fdf8f6;
+      --white:   #ffffff;
+      --text:    #1c1917;
+      --muted:   #78716c;
+      --border:  #e7e5e4;
+      --radius:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+
+    /* ── DEMO BAR ── */
+    .demo-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      background: #1e3a5f; color: #fff;
+      height: 40px; display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+      font-size: 0.82rem; padding: 0 1rem; flex-wrap: wrap;
+    }
+    .demo-bar strong { color: #fbbf24; }
+    .demo-btn {
+      background: #f97316; color: #fff; border-radius: 6px;
+      padding: 0.25rem 0.9rem; font-size: 0.8rem; font-weight: 700;
+      text-decoration: none; white-space: nowrap;
+    }
+    .demo-btn:hover { background: #ea6c0a; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 40px; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+    }
+    .brand { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .brand-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--rose), #be185d);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .brand-text strong { display: block; font-size: 1rem; color: var(--rose); font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+    .brand-text span   { font-size: 0.72rem; color: var(--muted); }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--text); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-wa {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #25d366; color: #fff;
+      border-radius: 8px; padding: 0.5rem 1.1rem;
+      font-size: 0.85rem; font-weight: 700; text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden; padding-top: 108px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=85&fit=crop');
+      background-size: cover; background-position: center 40%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg, rgba(28,10,30,0.88) 0%, rgba(28,10,30,0.55) 55%, rgba(28,10,30,0.1) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid; grid-template-columns: 1fr 400px; gap: 3rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(157,23,77,0.25); border: 1px solid rgba(157,23,77,0.5);
+      color: #f9a8d4; border-radius: 100px;
+      padding: 0.3rem 0.9rem; font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1; color: #fff; margin-bottom: 1rem;
+    }
+    .hero h1 em { color: #f9a8d4; font-style: normal; }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 2rem; max-width: 480px; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-rose {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--rose); color: #fff;
+      border-radius: 10px; padding: 0.85rem 1.8rem;
+      font-size: 1rem; font-weight: 700; text-decoration: none; transition: background 0.2s;
+    }
+    .btn-rose:hover { background: #831843; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 2px solid rgba(255,255,255,0.5); color: #fff;
+      border-radius: 10px; padding: 0.85rem 1.8rem;
+      font-size: 1rem; font-weight: 600; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+    .hero-tags { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 2rem; }
+    .tag { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); border-radius: 100px; padding: 0.3rem 0.8rem; font-size: 0.8rem; }
+
+    /* Carte horaires */
+    .hero-card {
+      background: rgba(255,255,255,0.97); border-radius: var(--radius);
+      padding: 1.8rem; box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+    }
+    .hero-card h3 { font-size: 1rem; font-weight: 700; color: var(--rose); margin-bottom: 1.2rem; }
+    .hours-list { list-style: none; }
+    .hours-list li { display: flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+    .hours-list li:last-child { border-bottom: none; }
+    .hours-list .day { font-weight: 500; }
+    .hours-list .time { color: var(--rose); font-weight: 600; }
+    .hours-list .closed { color: #ef4444; font-weight: 600; }
+    .open-now {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #fce7f3; color: var(--rose);
+      border-radius: 8px; padding: 0.6rem 1rem;
+      font-size: 0.85rem; font-weight: 600; margin-top: 1.2rem;
+    }
+    .open-now::before { content: ''; width: 8px; height: 8px; background: var(--rose); border-radius: 50%; flex-shrink: 0; }
+    .wa-card {
+      display: flex; align-items: center; gap: 0.7rem;
+      background: #f0fdf4; border: 1.5px solid #bbf7d0;
+      border-radius: 10px; padding: 0.8rem 1rem;
+      text-decoration: none; margin-top: 1rem; transition: background 0.2s;
+    }
+    .wa-card:hover { background: #dcfce7; }
+    .wa-icon { width: 36px; height: 36px; background: #25d366; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .wa-card-text strong { display: block; font-size: 0.88rem; color: #065f46; }
+    .wa-card-text span   { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── STATS ── */
+    .stats-band { background: var(--rose); padding: 2rem; }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; text-align: center; }
+    .stat strong { display: block; font-size: 2rem; font-weight: 800; color: #fce7f3; }
+    .stat span   { font-size: 0.85rem; color: rgba(255,255,255,0.75); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag { display: inline-block; background: var(--rose-lt); color: var(--rose); border-radius: 100px; padding: 0.25rem 0.85rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--dark); margin-bottom: 0.5rem; font-weight: 700; }
+    .section-sub { color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; max-width: 550px; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--bg); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .service-card {
+      background: var(--white); border-radius: var(--radius);
+      overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+    .service-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .service-body { padding: 1.3rem; }
+    .service-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 0.4rem; }
+    .service-body p  { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.9rem; }
+    .service-footer { display: flex; justify-content: space-between; align-items: center; }
+    .prix { font-size: 1.1rem; font-weight: 800; color: var(--rose); }
+    .service-badge { background: var(--rose-lt); color: var(--rose); border-radius: 6px; padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 600; }
+
+    /* ── TARIFS ── */
+    .tarifs { background: var(--white); }
+    .tarifs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .tarif-card { border: 2px solid var(--border); border-radius: var(--radius); padding: 2rem; text-align: center; position: relative; transition: border-color 0.2s, box-shadow 0.2s; }
+    .tarif-card.featured { border-color: var(--rose); box-shadow: 0 8px 32px rgba(157,23,77,0.15); }
+    .tarif-badge-top { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--rose); color: #fff; border-radius: 100px; padding: 0.2rem 0.9rem; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+    .tarif-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .tarif-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+    .tarif-price { font-size: 2rem; font-weight: 800; color: var(--rose); margin-bottom: 0.2rem; }
+    .tarif-price span { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
+    .tarif-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.3rem; line-height: 1.6; }
+    .tarif-list { list-style: none; text-align: left; margin-bottom: 1.5rem; }
+    .tarif-list li { font-size: 0.88rem; color: var(--text); padding: 0.4rem 0; border-bottom: 1px solid #f3f4f6; }
+    .tarif-list li::before { content: "✓  "; color: var(--rose); font-weight: 700; }
+    .btn-tarif { display: block; text-align: center; background: var(--rose-lt); color: var(--rose); border-radius: 8px; padding: 0.7rem; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+    .tarif-card.featured .btn-tarif { background: var(--rose); color: #fff; }
+    .btn-tarif:hover { opacity: 0.88; }
+
+    /* ── À PROPOS ── */
+    .apropos { background: var(--bg); }
+    .apropos-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .apropos-img-wrap { position: relative; }
+    .apropos-img { width: 100%; height: 440px; object-fit: cover; border-radius: var(--radius); display: block; }
+    .apropos-tag-img { position: absolute; bottom: -20px; right: -20px; background: var(--rose); color: #fff; border-radius: var(--radius); padding: 1rem 1.4rem; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .apropos-tag-img strong { display: block; font-size: 1.6rem; font-weight: 800; }
+    .apropos-tag-img span { font-size: 0.8rem; opacity: 0.9; }
+    .apropos-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); color: var(--dark); margin-bottom: 1rem; font-weight: 700; }
+    .apropos-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+    .values { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+    .value-item { display: flex; align-items: flex-start; gap: 0.8rem; }
+    .value-icon { width: 36px; height: 36px; flex-shrink: 0; background: var(--rose-lt); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .value-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--dark); }
+    .value-item p  { font-size: 0.83rem; color: var(--muted); margin: 0; }
+
+    /* ── GALERIE ── */
+    .galerie { background: var(--white); }
+    .galerie-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+    .galerie-item { border-radius: 10px; overflow: hidden; aspect-ratio: 1; }
+    .galerie-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
+    .galerie-item:hover img { transform: scale(1.08); }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--bg); }
+    .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contact h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); color: var(--dark); margin-bottom: 0.5rem; font-weight: 700; }
+    .contact-sub { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .contact-row { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; border: 1.5px solid var(--border); border-radius: 10px; }
+    .contact-row-icon { width: 42px; height: 42px; flex-shrink: 0; border-radius: 10px; background: var(--rose-lt); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .contact-row h4 { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .contact-row p  { font-size: 0.95rem; color: var(--text); font-weight: 600; margin: 0; }
+    .contact-row a  { color: var(--rose); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; color: var(--text); background: #fafafa; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--rose); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .btn-contact { width: 100%; background: var(--rose); color: #fff; border: none; border-radius: 8px; padding: 0.85rem; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+    .btn-contact:hover { background: #831843; }
+    .map-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .map-wrap iframe { width: 100%; height: 300px; border: none; display: block; }
+    .map-address { background: var(--rose-lt); padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.7rem; font-size: 0.88rem; color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); color: rgba(255,255,255,0.65); padding: 3rem 2rem 1.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand strong { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #f9a8d4; }
+    .footer-brand p { margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h4 { color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { padding: 0.3rem 0; font-size: 0.85rem; }
+    .footer-col ul a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: #f9a8d4; }
+    .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; flex-wrap: wrap; gap: 0.5rem; }
+    .footer-bottom a { color: #f9a8d4; text-decoration: none; }
+
+    /* WhatsApp flottant */
+    .wa-float { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 300; width: 56px; height: 56px; background: #25d366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.5); text-decoration: none; animation: pulse 2.5s infinite; }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); } 50% { box-shadow: 0 4px 32px rgba(37,211,102,0.8); } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .tarifs-grid { grid-template-columns: 1fr; }
+      .apropos-inner { grid-template-columns: 1fr; }
+      .galerie-grid { grid-template-columns: repeat(2,1fr); }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .galerie-grid { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BAR -->
+  <div class="demo-bar">
+    <span>Vous voulez avoir le vôtre ?</span>
+    <strong>Demandez un devis — réponse sous 24h</strong>
+    <a href="/" class="demo-btn">sitespourartisans.fr →</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="brand">
+      <div class="brand-icon">✂️</div>
+      <div class="brand-text">
+        <strong>Salon Élégance</strong>
+        <span>Coiffure artisanale · Casablanca</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Nos services</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#apropos">Notre équipe</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20prendre%20rendez-vous..." class="nav-wa" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.5l5.797-1.52A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.804a9.787 9.787 0 01-4.988-1.362l-.358-.213-3.44.902.918-3.352-.233-.375A9.804 9.804 0 012.196 12C2.196 6.574 6.574 2.196 12 2.196S21.804 6.574 21.804 12 17.426 21.804 12 21.804z"/></svg>
+      Réserver
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge">✨ Coiffure premium depuis 2008</div>
+        <h1>Votre beauté, <em>sublimée</em> par des experts</h1>
+        <p class="hero-sub">Coupes tendance, colorations personnalisées, soins kératine et lissages brésiliens. Réservez en 30 secondes par WhatsApp — résultat garanti.</p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20prendre%20rendez-vous" class="btn-rose" target="_blank">Réserver par WhatsApp</a>
+          <a href="#services" class="btn-outline">Voir nos services</a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">💅 Produits premium</span>
+          <span class="tag">📅 Sur rendez-vous</span>
+          <span class="tag">🌟 Résultat garanti</span>
+        </div>
+      </div>
+
+      <!-- Carte horaires -->
+      <div class="hero-card">
+        <h3>✂️ Nos horaires</h3>
+        <ul class="hours-list">
+          <li><span class="day">Lundi</span>    <span class="time">09:00 – 20:00</span></li>
+          <li><span class="day">Mardi</span>    <span class="time">09:00 – 20:00</span></li>
+          <li><span class="day">Mercredi</span> <span class="time">09:00 – 20:00</span></li>
+          <li><span class="day">Jeudi</span>    <span class="time">09:00 – 20:00</span></li>
+          <li><span class="day">Vendredi</span> <span class="time">09:00 – 21:00</span></li>
+          <li><span class="day">Samedi</span>   <span class="time">08:00 – 21:00</span></li>
+          <li><span class="day">Dimanche</span> <span class="closed">Fermé</span></li>
+        </ul>
+        <div class="open-now">Ouvert maintenant · Ferme à 20h</div>
+        <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20un%20rendez-vous" class="wa-card" target="_blank">
+          <div class="wa-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.5l5.797-1.52A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.804a9.787 9.787 0 01-4.988-1.362l-.358-.213-3.44.902.918-3.352-.233-.375A9.804 9.804 0 012.196 12C2.196 6.574 6.574 2.196 12 2.196S21.804 6.574 21.804 12 17.426 21.804 12 21.804z"/></svg>
+          </div>
+          <div class="wa-card-text">
+            <strong>Prendre rendez-vous</strong>
+            <span>Réponse rapide · Sans attente</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat"><strong>15+</strong><span>ans d'expérience</span></div>
+      <div class="stat"><strong>500+</strong><span>clientes fidèles</span></div>
+      <div class="stat"><strong>100%</strong><span>produits certifiés</span></div>
+      <div class="stat"><strong>4.9★</strong><span>avis clients</span></div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-inner">
+      <div class="section-tag">Nos services</div>
+      <h2 class="section-title">Tout pour sublimer vos cheveux</h2>
+      <p class="section-sub">Chaque prestation est réalisée avec des produits premium et par des coiffeurs certifiés.</p>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&fit=crop" alt="Coupe femme tendance" loading="lazy" />
+          <div class="service-body">
+            <h3>Coupe femme</h3>
+            <p>Coupe sur mesure adaptée à votre visage, votre style et vos envies. Brushing ou coiffage inclus.</p>
+            <div class="service-footer">
+              <span class="prix">À partir de 80 DH</span>
+              <span class="service-badge">⭐ Populaire</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&q=80&fit=crop" alt="Coloration professionnelle" loading="lazy" />
+          <div class="service-body">
+            <h3>Coloration & Mèches</h3>
+            <p>Coloration complète, balayage, mèches, ombré hair. Produits L'Oréal Professionnel utilisés.</p>
+            <div class="service-footer">
+              <span class="prix">À partir de 150 DH</span>
+              <span class="service-badge">🎨 Tendance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop" alt="Soin kératine lissage" loading="lazy" />
+          <div class="service-body">
+            <h3>Lissage & Kératine</h3>
+            <p>Lissage brésilien, kératine, défrisage. Cheveux lisses, soyeux et disciplinés pour plusieurs mois.</p>
+            <div class="service-footer">
+              <span class="prix">À partir de 300 DH</span>
+              <span class="service-badge">💎 Premium</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80&fit=crop" alt="Coupe homme" loading="lazy" />
+          <div class="service-body">
+            <h3>Coupe homme</h3>
+            <p>Coupe classique, dégradé américain, coupe + barbe. Style moderne ou traditionnel selon vos envies.</p>
+            <div class="service-footer">
+              <span class="prix">À partir de 40 DH</span>
+              <span class="service-badge">💈 Homme</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=600&q=80&fit=crop" alt="Brushing et coiffage" loading="lazy" />
+          <div class="service-body">
+            <h3>Brushing & Coiffage</h3>
+            <p>Brushing lissant, coiffage bouclé, mise en plis. Parfait avant un événement ou une sortie spéciale.</p>
+            <div class="service-footer">
+              <span class="prix">À partir de 60 DH</span>
+              <span class="service-badge">✨ Express</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img class="service-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80&fit=crop" alt="Soins capillaires" loading="lazy" />
+          <div class="service-body">
+            <h3>Soins capillaires</h3>
+            <p>Masque nourrissant, soin protéiné, traitement anti-chute. Pour des cheveux sains et brillants.</p>
+            <div class="service-footer">
+              <span class="prix">À partir de 100 DH</span>
+              <span class="service-badge">🌿 Soin</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFS -->
+  <section class="tarifs" id="tarifs">
+    <div class="section-inner">
+      <div class="section-tag">Nos tarifs</div>
+      <h2 class="section-title">Transparent et sans surprise</h2>
+      <p class="section-sub">Des forfaits clairs adaptés à tous les budgets et toutes les occasions.</p>
+      <div class="tarifs-grid">
+
+        <div class="tarif-card">
+          <div class="tarif-icon">✂️</div>
+          <h3>Essentiel</h3>
+          <div class="tarif-price">40 <span>DH</span></div>
+          <p class="tarif-desc">Pour un entretien rapide et soigné.</p>
+          <ul class="tarif-list">
+            <li>Coupe homme simple</li>
+            <li>Shampoing inclus</li>
+            <li>Coiffage finition</li>
+            <li>Durée : 30 min</li>
+          </ul>
+          <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20le%20forfait%20Essentiel" class="btn-tarif" target="_blank">Réserver</a>
+        </div>
+
+        <div class="tarif-card featured">
+          <div class="tarif-badge-top">⭐ Le plus demandé</div>
+          <div class="tarif-icon">💇‍♀️</div>
+          <h3>Complète Femme</h3>
+          <div class="tarif-price">180 <span>DH</span></div>
+          <p class="tarif-desc">La prestation complète pour un look parfait.</p>
+          <ul class="tarif-list">
+            <li>Shampoing + soin</li>
+            <li>Coupe sur mesure</li>
+            <li>Brushing ou coiffage</li>
+            <li>Conseil personnalisé</li>
+            <li>Durée : 1h30</li>
+          </ul>
+          <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20le%20forfait%20Femme%20Complète" class="btn-tarif" target="_blank">Réserver par WhatsApp</a>
+        </div>
+
+        <div class="tarif-card">
+          <div class="tarif-icon">🌟</div>
+          <h3>Coloration Premium</h3>
+          <div class="tarif-price">350 <span>DH</span></div>
+          <p class="tarif-desc">Transformation totale avec couleur et soin.</p>
+          <ul class="tarif-list">
+            <li>Coloration ou balayage</li>
+            <li>Soin après-couleur</li>
+            <li>Coupe + brushing</li>
+            <li>Produits L'Oréal Pro</li>
+            <li>Durée : 2h30</li>
+          </ul>
+          <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20le%20forfait%20Coloration%20Premium" class="btn-tarif" target="_blank">Réserver</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="apropos" id="apropos">
+    <div class="apropos-inner">
+      <div class="apropos-img-wrap">
+        <img class="apropos-img" src="https://images.unsplash.com/photo-1633681122987-8ae1f8e74db3?w=800&q=85&fit=crop" alt="Notre équipe de coiffeurs professionnels" loading="lazy" />
+        <div class="apropos-tag-img">
+          <strong>2008</strong>
+          <span>Ouvert à Casablanca</span>
+        </div>
+      </div>
+      <div class="apropos-text">
+        <div class="section-tag">Notre équipe</div>
+        <h2>Des coiffeurs passionnés depuis 15 ans</h2>
+        <p>Le Salon Élégance a ouvert ses portes en 2008 avec une idée simple : offrir à chaque cliente une expérience unique, personnalisée, dans un cadre chaleureux et professionnel.</p>
+        <p>Nos coiffeurs se forment régulièrement aux nouvelles tendances — Paris, Milan, Dubai — pour vous apporter le meilleur de la coiffure contemporaine.</p>
+        <div class="values">
+          <div class="value-item">
+            <div class="value-icon">💎</div>
+            <div>
+              <h4>Produits certifiés</h4>
+              <p>L'Oréal Professionnel, Kérastase, Wella exclusivement.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">📅</div>
+            <div>
+              <h4>Rendez-vous rapide</h4>
+              <p>Réservation par WhatsApp en moins d'une minute.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌟</div>
+            <div>
+              <h4>Résultat garanti</h4>
+              <p>Pas satisfaite ? On refait gratuitement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="galerie">
+    <div class="section-inner">
+      <div class="section-tag">Galerie</div>
+      <h2 class="section-title">Nos réalisations</h2>
+      <p class="section-sub">Quelques-unes de nos créations — chaque coiffure est unique.</p>
+      <div class="galerie-grid">
+        <div class="galerie-item"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=400&q=80&fit=crop" alt="Coiffure réalisation 1" loading="lazy" /></div>
+        <div class="galerie-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e44451c97?w=400&q=80&fit=crop" alt="Coiffure réalisation 2" loading="lazy" /></div>
+        <div class="galerie-item"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80&fit=crop" alt="Coiffure réalisation 3" loading="lazy" /></div>
+        <div class="galerie-item"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80&fit=crop" alt="Coiffure réalisation 4" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="section-tag">Nous trouver</div>
+        <h2>Prenez rendez-vous</h2>
+        <p class="contact-sub">Par WhatsApp, téléphone ou formulaire — nous répondons rapidement.</p>
+        <div class="contact-info">
+          <div class="contact-row">
+            <div class="contact-row-icon">📍</div>
+            <div><h4>Adresse</h4><p>45 Rue Mohammed V, Casablanca, Maroc</p></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">📞</div>
+            <div><h4>Téléphone</h4><a href="tel:+212699245542">+212 699 245 542</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">💬</div>
+            <div><h4>WhatsApp</h4><a href="https://wa.me/212699245542" target="_blank">Réserver ou poser une question</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-icon">🕐</div>
+            <div><h4>Horaires</h4><p>Lun–Ven 09h–20h · Sam 08h–21h · Dim fermé</p></div>
+          </div>
+        </div>
+        <div class="form-group"><label>Votre nom</label><input type="text" placeholder="Ex : Fatima Zahra" /></div>
+        <div class="form-group"><label>Téléphone / WhatsApp</label><input type="tel" placeholder="+212 6 00 00 00 00" /></div>
+        <div class="form-group">
+          <label>Service souhaité</label>
+          <select>
+            <option value="">-- Choisissez un service --</option>
+            <option>Coupe femme</option>
+            <option>Coloration / Mèches</option>
+            <option>Lissage / Kératine</option>
+            <option>Coupe homme</option>
+            <option>Brushing</option>
+            <option>Soin capillaire</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message (optionnel)</label><textarea placeholder="Précisez vos envies, la longueur de vos cheveux…"></textarea></div>
+        <button class="btn-contact">Envoyer ma demande →</button>
+      </div>
+
+      <div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106376.07!2d-7.6192!3d33.5731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd4778aa113b%3A0xb06c1d84f310fd3!2sCasablanca!5e0!3m2!1sfr!2sma!4v1710000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Salon Élégance – Casablanca"></iframe>
+          <div class="map-address">📍 <strong>45 Rue Mohammed V, Casablanca</strong> &nbsp;·&nbsp; Centre-ville</div>
+        </div>
+        <div style="margin-top:1.5rem; padding:1.5rem; background:var(--rose-lt); border:1.5px solid #f9a8d4; border-radius:var(--radius);">
+          <p style="font-size:0.9rem; color:var(--rose); font-weight:600; margin-bottom:0.5rem;">📅 Réservation rapide</p>
+          <p style="font-size:0.85rem; color:#374151;">Envoyez-nous un message WhatsApp avec votre prénom, le service souhaité et la date. Confirmation en moins de 10 minutes.</p>
+          <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20prendre%20rendez-vous%20au%20Salon%20Élégance" style="display:inline-block; margin-top:1rem; background:var(--rose); color:#fff; border-radius:8px; padding:0.6rem 1.2rem; font-weight:700; font-size:0.88rem; text-decoration:none;" target="_blank">Réserver maintenant →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>✂️ Salon Élégance</strong>
+        <p>Salon de coiffure professionnel à Casablanca depuis 2008.<br>Coupes, colorations, lissages et soins capillaires premium.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#services">Nos services</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#apropos">Notre équipe</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+212699245542">+212 699 245 542</a></li>
+          <li><a href="https://wa.me/212699245542" target="_blank">WhatsApp</a></li>
+          <li>Rue Mohammed V, Casablanca</li>
+          <li>Lun–Sam 09h–21h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Salon Élégance · Casablanca, Maroc</span>
+      <span>Site réalisé par <a href="https://sitespourartisans.fr" target="_blank">sitespourartisans.fr</a></span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flottant -->
+  <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20voudrais%20prendre%20rendez-vous..." class="wa-float" target="_blank">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.5l5.797-1.52A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.804a9.787 9.787 0 01-4.988-1.362l-.358-.213-3.44.902.918-3.352-.233-.375A9.804 9.804 0 012.196 12C2.196 6.574 6.574 2.196 12 2.196S21.804 6.574 21.804 12 17.426 21.804 12 21.804z"/></svg>
+  </a>
+
+
+  <style>
+    /* ── FILIGRANE DÉMO ── */
+    .img-demo-wrap { position: relative; overflow: hidden; display: block; }
+    .img-demo-wrap img { display: block; width: 100%; transition: transform 0.4s ease; }
+    .img-demo-wrap:hover img { transform: scale(1.06); }
+
+    .img-demo-overlay {
+      position: absolute; inset: 0;
+      background: rgba(10, 20, 50, 0.50);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.65; transition: opacity 0.35s ease, background 0.35s ease;
+      pointer-events: none; z-index: 10;
+    }
+    .img-demo-wrap:hover .img-demo-overlay {
+      opacity: 1;
+      background: rgba(10, 20, 50, 0.72);
+    }
+
+    .filigrane-texte {
+      transform: rotate(-38deg);
+      text-align: center;
+      color: #fff;
+      padding: 0.6rem 1.6rem;
+      border: 2.5px solid rgba(255,255,255,0.75);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(3px);
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.08);
+    }
+    .filigrane-texte strong {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #fbbf24;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .filigrane-texte small {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-top: 0.3rem;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const selectors = '.service-img, .apropos-img, .galerie-item img';
+      document.querySelectorAll(selectors).forEach(img => {
+        const wrap = document.createElement('div');
+        wrap.className = 'img-demo-wrap';
+        img.parentNode.insertBefore(wrap, img);
+        wrap.appendChild(img);
+        const overlay = document.createElement('div');
+        overlay.className = 'img-demo-overlay';
+        overlay.innerHTML = `<div class="filigrane-texte">
+          <strong>DÉMO</strong>
+          <small>Personnalisé avec vos photos</small>
+        </div>`;
+        wrap.appendChild(overlay);
+      });
+    });
+  </script>
+
+</body>
+</html>

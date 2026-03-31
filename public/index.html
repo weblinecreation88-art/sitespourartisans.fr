@@ -12,8 +12,8 @@
   <meta property="og:title" content="Site vitrine pour artisans – Coiffeur, Salon de beauté, Blanchisserie" />
   <meta property="og:description" content="Site vitrine professionnel en 3 jours pour coiffeurs, salons de beauté et blanchisseries en France et au Maroc." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://siteartisan.fr" />
-  <link rel="canonical" href="https://siteartisan.fr" />
+  <meta property="og:url" content="https://sitespourartisans.fr" />
+  <link rel="canonical" href="https://sitespourartisans.fr" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,14 +56,17 @@
       align-items: center;
       justify-content: space-between;
       height: 64px;
+      gap: 1rem;
     }
     .nav-brand {
       font-size: 1.2rem;
       font-weight: 800;
       color: var(--navy);
       text-decoration: none;
+      flex-shrink: 0;
     }
     .nav-brand span { color: var(--orange); }
+
     .nav-cta {
       background: var(--orange);
       color: #fff;
@@ -75,8 +78,58 @@
       cursor: pointer;
       text-decoration: none;
       transition: background 0.2s;
+      flex-shrink: 0;
     }
     .nav-cta:hover { background: #ea6c0a; }
+
+    /* ── BANDE DÉMOS ── */
+    .demos-bar {
+      background: #fff7ed;
+      border-bottom: 2px solid #fed7aa;
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .demos-bar-label {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: #92400e;
+      white-space: nowrap;
+    }
+    .demos-bar-links {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .demo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--orange);
+      color: #fff;
+      border-radius: 7px;
+      padding: 0.42rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(249,115,22,0.35);
+      letter-spacing: 0.01em;
+    }
+    .demo-btn:hover {
+      background: #ea6c0a;
+      transform: translateY(-1px);
+    }
+    @media (max-width: 600px) {
+      .demos-bar { padding: 0.5rem 1rem; gap: 0.5rem; }
+      .demo-btn  { font-size: 0.78rem; padding: 0.35rem 0.75rem; }
+      .demos-bar-label { font-size: 0.75rem; }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -131,80 +184,185 @@
     .form-card {
       background: var(--white);
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: 1.8rem 2rem;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
     .form-card h2 {
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--navy);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
     }
     .form-card .form-sub {
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       color: var(--muted);
       margin-bottom: 1.2rem;
     }
-    .form-group { margin-bottom: 0.9rem; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+    }
+    .form-group { margin-bottom: 0.8rem; }
     .form-group label {
       display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
       color: var(--text);
       margin-bottom: 0.3rem;
+    }
+    .form-group label .opt {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.75rem;
     }
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
-      padding: 0.65rem 0.9rem;
+      padding: 0.6rem 0.85rem;
       border: 1.5px solid var(--border);
       border-radius: 8px;
       font-family: inherit;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text);
       background: var(--bg);
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
     }
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       outline: none;
       border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(14,165,233,0.12);
     }
-    .form-group textarea { resize: vertical; min-height: 70px; }
+    .form-group input.valid  { border-color: #22c55e; }
+    .form-group input.error  { border-color: #ef4444; }
+    .form-group textarea { resize: vertical; min-height: 60px; }
+
+    /* Pills radio pour budget & urgence */
+    .pill-group {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+      margin-top: 0.3rem;
+    }
+    .pill-group input[type="radio"] { display: none; }
+    .pill-group label {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .pill-group input[type="radio"]:checked + label {
+      border-color: var(--teal);
+      background: #e0f2fe;
+      color: var(--teal);
+    }
+    .pill-group label:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* Séparateur de section */
+    .form-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1rem 0 0.8rem;
+    }
+    .form-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
     .btn-submit {
       width: 100%;
       background: var(--orange);
       color: #fff;
       border: none;
-      border-radius: 8px;
-      padding: 0.85rem;
-      font-size: 1rem;
-      font-weight: 700;
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 1.05rem;
+      font-weight: 800;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      margin-top: 0.4rem;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      margin-top: 0.6rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 18px rgba(249,115,22,0.35);
     }
-    .btn-submit:hover { background: #ea6c0a; }
+    .btn-submit:hover  { background: #ea6c0a; box-shadow: 0 6px 24px rgba(249,115,22,0.45); }
     .btn-submit:active { transform: scale(0.98); }
+    .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    /* Trust bar sous le bouton */
+    .form-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .form-trust span {
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
     .form-success {
       display: none;
       text-align: center;
-      padding: 1.5rem;
-      color: var(--teal);
-      font-weight: 600;
+      padding: 2rem 1.5rem;
     }
+    .form-success .success-icon {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+    }
+    .form-success h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .form-success p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .btn-wa-success {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #25d366;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-wa-success:hover { background: #1db954; }
+
     .form-pitch {
       margin-top: 1rem;
       border-top: 1px solid var(--border);
-      padding-top: 1rem;
+      padding-top: 0.9rem;
     }
     .form-pitch ul {
       list-style: none;
-      font-size: 0.83rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      line-height: 1.9;
+      line-height: 1.95;
     }
     .form-pitch ul li::before { content: "✓ "; color: var(--teal); font-weight: 700; }
 
@@ -296,47 +454,97 @@
     .beaute    .btn-metier { background: #fce7f3; color: #db2777; }
     .blanchisserie .btn-metier { background: #ccfbf1; color: var(--teal); }
 
-    /* ── EXEMPLE BOULANGERIE ── */
+    /* ── EXEMPLES 3 MÉTIERS ── */
     .exemple { background: var(--bg); }
-    .exemple-card {
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .demo-card {
       background: var(--white);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .exemple-header {
-      background: linear-gradient(135deg, #92400e, #d97706);
-      color: #fff;
-      padding: 2rem 2.5rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
+      flex-direction: column;
     }
-    .exemple-logo {
-      width: 64px;
-      height: 64px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      flex-shrink: 0;
+    .demo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.14);
     }
-    .exemple-header h3 { font-size: 1.4rem; font-weight: 800; }
-    .exemple-header p  { font-size: 0.9rem; opacity: 0.85; margin-top: 0.2rem; }
-    .exemple-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
+    .demo-browser-bar {
+      background: #e8eaed;
+      padding: 0.6rem 0.8rem;
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    .exemple-col {
-      padding: 1.5rem 2rem;
-      border-right: 1px solid var(--border);
+    .demo-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #ccc;
     }
-    .exemple-col:last-child { border-right: none; }
+    .demo-dot:nth-child(1) { background: #ff5f57; }
+    .demo-dot:nth-child(2) { background: #febc2e; }
+    .demo-dot:nth-child(3) { background: #28c840; }
+    .demo-url {
+      flex: 1; background: var(--white);
+      border-radius: 4px; padding: 0.25rem 0.7rem;
+      font-size: 0.72rem; color: var(--muted);
+      margin-left: 0.4rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .demo-preview {
+      position: relative; overflow: hidden;
+      cursor: pointer; flex: 1;
+    }
+    .demo-preview img {
+      width: 100%; display: block;
+      transition: transform 0.4s ease;
+      aspect-ratio: 16/10; object-fit: cover; object-position: top;
+    }
+    .demo-preview-bg {
+      width: 100%; aspect-ratio: 16/10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.8rem; transition: transform 0.4s ease;
+    }
+    .demo-card:hover .demo-preview img,
+    .demo-card:hover .demo-preview-bg { transform: scale(1.03); }
+    .demo-preview-overlay {
+      position: absolute; inset: 0;
+      background: rgba(10,20,50,0.6);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .demo-card:hover .demo-preview-overlay { opacity: 1; }
+    .btn-voir-demo {
+      display: inline-block;
+      background: var(--orange); color: #fff;
+      padding: 0.6rem 1.4rem; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-voir-demo:hover { background: #ea6c0a; }
+    .demo-footer {
+      padding: 1rem 1.2rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .demo-footer-info { display: flex; align-items: center; gap: 0.6rem; }
+    .demo-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .demo-footer h4 { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
+    .demo-footer p  { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+    .demo-badge {
+      font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.6rem;
+      border-radius: 20px; white-space: nowrap;
+    }
+
+    /* legacy — kept for mobile breakpoint reference */
     .exemple-col h4 {
       font-size: 0.75rem;
       font-weight: 700;
@@ -375,6 +583,66 @@
       white-space: nowrap;
     }
     .btn-orange:hover { background: #ea6c0a; }
+
+    /* ── PREVIEW SCREENSHOT ── */
+    .preview-wrap { max-width: 960px; margin: 0 auto; }
+    .preview-browser {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      border: 1px solid var(--border);
+    }
+    .browser-bar {
+      background: #e8eaed;
+      padding: 0.7rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .browser-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #ccc;
+    }
+    .browser-dot:nth-child(1) { background: #ff5f57; }
+    .browser-dot:nth-child(2) { background: #febc2e; }
+    .browser-dot:nth-child(3) { background: #28c840; }
+    .browser-url {
+      flex: 1; background: var(--white);
+      border-radius: 6px; padding: 0.3rem 0.8rem;
+      font-size: 0.8rem; color: var(--muted);
+      margin-left: 0.5rem;
+    }
+    .preview-img-wrap {
+      position: relative; overflow: hidden;
+      cursor: pointer;
+    }
+    .preview-img {
+      width: 100%; display: block;
+      transition: transform 0.4s ease;
+    }
+    .preview-img-wrap:hover .preview-img { transform: scale(1.02); }
+    .preview-overlay {
+      position: absolute; inset: 0;
+      background: rgba(30,58,95,0.65);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .preview-img-wrap:hover .preview-overlay { opacity: 1; }
+    .preview-overlay-content { text-align: center; }
+    .preview-label {
+      color: #fff; font-size: 1.1rem; font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .btn-preview {
+      display: inline-block;
+      background: var(--orange); color: #fff;
+      border-radius: 10px; padding: 0.85rem 2rem;
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-preview:hover { background: #ea6c0a; }
+    .preview-caption {
+      text-align: center; color: var(--muted);
+      font-size: 0.9rem; margin-top: 1.5rem;
+    }
 
     /* ── PROCESS ── */
     .process { background: var(--white); }
@@ -468,8 +736,7 @@
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
       .metiers-grid { grid-template-columns: 1fr; }
-      .exemple-body { grid-template-columns: 1fr; }
-      .exemple-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .demos-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
@@ -484,9 +751,18 @@
 
   <!-- NAVBAR -->
   <nav>
-    <a href="#" class="nav-brand">site<span>artisan</span>.fr</a>
+    <a href="/" class="nav-brand">site<span>artisan</span>.fr</a>
     <a href="#contact" class="nav-cta">Demander votre site</a>
   </nav>
+
+  <!-- BANDE DÉMOS -->
+  <div class="demos-bar">
+    <div class="demos-bar-links">
+      <a href="/boulangerie/" class="demo-btn" target="_blank">Voir démo Boulangerie →</a>
+      <a href="/coiffeur/"    class="demo-btn" target="_blank">Voir démo Coiffeur →</a>
+      <a href="/cours/"       class="demo-btn" target="_blank">Voir démo Cours →</a>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="contact">
@@ -494,61 +770,175 @@
 
       <!-- Colonne gauche -->
       <div>
-        <div class="hero-badge">France & Maroc</div>
-        <h1>Créez votre site vitrine en <span>3 jours</span> et attirez plus de clients.</h1>
-        <p>J'aide les artisans en France et au Maroc — coiffeurs, salons de beauté, blanchisseries, boulangeries — à avoir un site simple, moderne et qui convertit en appels, WhatsApp et rendez-vous.</p>
-        <p style="font-size:0.9rem; color:#94a3b8;">Dites‑moi quel métier vous concerne ci‑dessous.</p>
-        <div class="hero-stats">
-          <div class="stat"><strong>3</strong><span>jours de livraison</span></div>
-          <div class="stat"><strong>100%</strong><span>responsive</span></div>
-          <div class="stat"><strong>SEO</strong><span>local inclus</span></div>
-        </div>
+        <div class="hero-badge">France & Maroc 🇫🇷 🇲🇦</div>
+        <h1>Votre site vitrine en <span>3 jours</span>.<br>Vos clients vous trouvent.</h1>
+        <p>Je crée des sites simples, rapides et visibles sur Google pour les artisans et commerçants — coiffeurs, salons, blanchisseries, boulangeries et plus.</p>
+
+        <ul style="list-style:none; margin-top:1.5rem; display:flex; flex-direction:column; gap:0.7rem;">
+          <li style="display:flex; align-items:center; gap:0.7rem; font-size:0.95rem; color:#cbd5e1;">
+            <span style="color:var(--orange); font-size:1.1rem;">✓</span> Site livré en 3 jours, prêt à recevoir des clients
+          </li>
+          <li style="display:flex; align-items:center; gap:0.7rem; font-size:0.95rem; color:#cbd5e1;">
+            <span style="color:var(--orange); font-size:1.1rem;">✓</span> WhatsApp + Google Maps + formulaire inclus
+          </li>
+          <li style="display:flex; align-items:center; gap:0.7rem; font-size:0.95rem; color:#cbd5e1;">
+            <span style="color:var(--orange); font-size:1.1rem;">✓</span> SEO local France & Maroc dès la mise en ligne
+          </li>
+          <li style="display:flex; align-items:center; gap:0.7rem; font-size:0.95rem; color:#cbd5e1;">
+            <span style="color:var(--orange); font-size:1.1rem;">✓</span> Devis gratuit — réponse sous 24h
+          </li>
+        </ul>
+
+        <p style="margin-top:1.8rem; font-size:0.82rem; color:#64748b; border-top:1px solid rgba(255,255,255,0.1); padding-top:1rem;">
+          👆 Cliquez sur un exemple dans le menu pour voir ce que vous recevrez.
+        </p>
       </div>
 
       <!-- Colonne droite : formulaire -->
       <div>
         <div class="form-card">
-          <h2>Obtenez votre site vitrine</h2>
-          <p class="form-sub">Réponse sous 24h — sans engagement</p>
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="nom">Nom complet *</label>
-              <input type="text" id="nom" name="nom" placeholder="Votre nom" required />
+          <h2>🚀 Obtenez votre site vitrine</h2>
+          <p class="form-sub">Réponse sous 24h — sans engagement — 100% gratuit</p>
+
+          <form id="contactForm" novalidate>
+
+            <!-- Bloc 1 : Identité -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nom">Votre nom *</label>
+                <input type="text" id="nom" name="nom" placeholder="Prénom Nom" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="nom_etablissement">Nom de l'établissement <span class="opt">(optionnel)</span></label>
+                <input type="text" id="nom_etablissement" name="nom_etablissement" placeholder="Ex : Salon Rachida" autocomplete="organization" />
+              </div>
             </div>
+
+            <!-- Bloc 2 : Contact — EMAIL EN PREMIER -->
             <div class="form-group">
-              <label for="telephone">Téléphone / WhatsApp *</label>
-              <input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00 ou +212 6 00 00 00 00" required />
+              <label for="email">📧 Adresse email *</label>
+              <input type="email" id="email" name="email" placeholder="vous@gmail.com" required autocomplete="email" />
             </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telephone">📱 Téléphone / WhatsApp *</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="+33 6… ou +212 6…" required autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="ville">Ville & Pays *</label>
+                <input type="text" id="ville" name="ville" placeholder="Paris, France" required />
+              </div>
+            </div>
+
+            <hr class="form-divider" />
+            <p class="form-section-label">Votre projet</p>
+
+            <!-- Bloc 3 : Métier -->
             <div class="form-group">
               <label for="metier">Votre métier *</label>
               <select id="metier" name="metier" required>
                 <option value="">-- Choisissez votre métier --</option>
-                <option value="coiffeur">Coiffeur / Coiffeuse</option>
-                <option value="salon_beaute">Salon de beauté</option>
-                <option value="blanchisserie">Blanchisserie / Pressing</option>
-                <option value="boulangerie">Boulangerie / Pâtisserie</option>
-                <option value="autre">Autre artisan / commerçant</option>
+                <option value="coiffeur">✂️ Coiffeur / Coiffeuse</option>
+                <option value="salon_beaute">💅 Salon de beauté / Onglerie</option>
+                <option value="blanchisserie">👕 Blanchisserie / Pressing</option>
+                <option value="boulangerie">🥐 Boulangerie / Pâtisserie</option>
+                <option value="restaurant">🍽️ Restaurant / Snack / Traiteur</option>
+                <option value="garage">🔧 Garage / Mécanique</option>
+                <option value="cours">📚 Cours particuliers / Formation</option>
+                <option value="autre">➕ Autre artisan / commerçant</option>
               </select>
             </div>
+
+            <!-- Bloc 4 : Site existant -->
             <div class="form-group">
-              <label for="ville">Ville & Pays *</label>
-              <input type="text" id="ville" name="ville" placeholder="Ex : Paris, France ou Meknès, Maroc" required />
+              <label>Avez-vous déjà un site web ?</label>
+              <div class="pill-group">
+                <input type="radio" name="a_deja_site" id="site_non" value="Non" />
+                <label for="site_non">Non, aucun site</label>
+                <input type="radio" name="a_deja_site" id="site_oui" value="Oui" />
+                <label for="site_oui">Oui, mais je veux mieux</label>
+                <input type="radio" name="a_deja_site" id="site_nsp" value="Je ne sais pas" />
+                <label for="site_nsp">Je ne sais pas</label>
+              </div>
             </div>
+
+            <!-- Bloc 5 : Budget -->
             <div class="form-group">
-              <label for="message">Message (optionnel)</label>
-              <textarea id="message" name="message" placeholder="Décrivez brièvement votre activité ou vos besoins…"></textarea>
+              <label>Budget envisagé <span class="opt">(indicatif)</span></label>
+              <div class="pill-group">
+                <input type="radio" name="budget" id="b1" value="Moins de 150€" />
+                <label for="b1">Moins de 150 €</label>
+                <input type="radio" name="budget" id="b2" value="150–300€" />
+                <label for="b2">150 – 300 €</label>
+                <input type="radio" name="budget" id="b3" value="300€ et plus" />
+                <label for="b3">300 € et plus</label>
+                <input type="radio" name="budget" id="b4" value="À discuter" />
+                <label for="b4">À discuter</label>
+              </div>
             </div>
-            <button type="submit" class="btn-submit">Demander votre site vitrine →</button>
+
+            <!-- Bloc 6 : Urgence -->
+            <div class="form-group">
+              <label>Délai souhaité</label>
+              <div class="pill-group">
+                <input type="radio" name="urgence" id="u1" value="Dès que possible" />
+                <label for="u1">⚡ Dès que possible</label>
+                <input type="radio" name="urgence" id="u2" value="Dans le mois" />
+                <label for="u2">Dans le mois</label>
+                <input type="radio" name="urgence" id="u3" value="Je réfléchis encore" />
+                <label for="u3">Je réfléchis encore</label>
+              </div>
+            </div>
+
+            <!-- Bloc 7 : Source -->
+            <div class="form-group">
+              <label for="provenance">Comment m'avez-vous trouvé ? <span class="opt">(optionnel)</span></label>
+              <select id="provenance" name="provenance">
+                <option value="">-- Choisissez --</option>
+                <option value="google">Google / Recherche internet</option>
+                <option value="reseaux_sociaux">Réseaux sociaux</option>
+                <option value="recommandation">Recommandation d'un ami</option>
+                <option value="whatsapp">Message WhatsApp</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <!-- Bloc 8 : Message -->
+            <div class="form-group">
+              <label for="message">Message <span class="opt">(optionnel)</span></label>
+              <textarea id="message" name="message" placeholder="Décrivez votre activité, vos besoins spécifiques…"></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+              Demander votre site vitrine gratuitement →
+            </button>
+
+            <!-- Trust bar -->
+            <div class="form-trust">
+              <span>🔒 Données confidentielles</span>
+              <span>⏱ Réponse sous 24h</span>
+              <span>✅ Sans engagement</span>
+            </div>
+
           </form>
+
+          <!-- Succès -->
           <div class="form-success" id="formSuccess">
-            ✅ Votre demande a bien été envoyée !<br>Je vous contacte sous 24h.
+            <div class="success-icon">🎉</div>
+            <h3>Demande bien reçue !</h3>
+            <p>Je vous contacte sous 24h par email ou WhatsApp.<br>En attendant, vous pouvez m'écrire directement.</p>
+            <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20viens%20de%20remplir%20le%20formulaire%20sur%20sitespourartisans.fr%20%F0%9F%91%8B" class="btn-wa-success" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.5l5.797-1.52A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.804a9.787 9.787 0 01-4.988-1.362l-.358-.213-3.44.902.918-3.352-.233-.375A9.804 9.804 0 012.196 12C2.196 6.574 6.574 2.196 12 2.196S21.804 6.574 21.804 12 17.426 21.804 12 21.804z"/></svg>
+              Écrire sur WhatsApp
+            </a>
           </div>
+
           <div class="form-pitch">
             <ul>
-              <li>Un site vitrine moderne et responsive</li>
-              <li>Textes adaptés à votre métier + galerie photos</li>
-              <li>Formulaire / WhatsApp + Google Maps intégrés</li>
-              <li>Déploiement en 3 jours environ</li>
+              <li>Site vitrine moderne, responsive et rapide</li>
+              <li>Textes sur mesure + galerie photos de votre activité</li>
+              <li>Bouton WhatsApp + formulaire + Google Maps inclus</li>
+              <li>SEO local France & Maroc — déploiement en 3 jours</li>
             </ul>
           </div>
         </div>
@@ -556,93 +946,102 @@
     </div>
   </section>
 
-  <!-- MÉTIERS -->
-  <section class="metiers">
+  <!-- [SECTIONS SUPPRIMÉES — FUNNEL ÉPURÉ] -->
+  <section class="exemple" style="display:none">
     <div class="section-inner">
-      <div class="section-tag">Pour quels métiers ?</div>
-      <h2 class="section-title">Un site vitrine taillé pour votre activité</h2>
-      <p class="section-sub">Chaque site est pensé et rédigé spécifiquement pour votre métier — pas un template générique.</p>
-      <div class="metiers-grid">
+      <div class="section-tag">Exemples concrets</div>
+      <h2 class="section-title">Voici à quoi ressemble votre site vitrine…</h2>
+      <p class="section-sub">3 démos complètes — cliquez sur chaque carte pour explorer le site en entier.</p>
 
-        <div class="metier-card coiffeur">
-          <div class="metier-icon">✂️</div>
-          <h3>Pour les coiffeurs</h3>
-          <p>Un site simple pour présenter vos coupes, vos tarifs de base, vos horaires et vos promotions. Vos clients voient votre salon avant de venir, choisissent un service et prennent rendez‑vous via WhatsApp ou appel.</p>
-          <a href="#contact" class="btn-metier">Voir un exemple pour ce métier</a>
+      <div class="demos-grid">
+
+        <!-- CARTE 1 : BOULANGERIE -->
+        <div class="demo-card">
+          <div class="demo-browser-bar">
+            <span class="demo-dot"></span>
+            <span class="demo-dot"></span>
+            <span class="demo-dot"></span>
+            <div class="demo-url">🔒 sitespourartisans.fr/boulangerie</div>
+          </div>
+          <div class="demo-preview">
+            <img src="/boulangerie-preview.jpg" alt="Démo site boulangerie" loading="lazy" />
+            <div class="demo-preview-overlay">
+              <a href="/boulangerie/" class="btn-voir-demo" target="_blank">Voir la démo complète →</a>
+            </div>
+          </div>
+          <div class="demo-footer">
+            <div class="demo-footer-info">
+              <div class="demo-icon" style="background:#fef3c7;">🥐</div>
+              <div>
+                <h4>Boulangerie</h4>
+                <p>Produits · Tarifs · Contact · Maps</p>
+              </div>
+            </div>
+            <span class="demo-badge" style="background:#fef3c7; color:#92400e;">En ligne</span>
+          </div>
         </div>
 
-        <div class="metier-card beaute">
-          <div class="metier-icon">💅</div>
-          <h3>Pour les salons de beauté</h3>
-          <p>Présentez vos soins visage, onglerie, extensions, épilation… Mettez en avant vos avantages — produits bio, technologies, durée des soins — et incitez vos clientes à prendre rendez‑vous.</p>
-          <a href="#contact" class="btn-metier">Voir un exemple pour ce métier</a>
+        <!-- CARTE 2 : COIFFEUR -->
+        <div class="demo-card">
+          <div class="demo-browser-bar">
+            <span class="demo-dot"></span>
+            <span class="demo-dot"></span>
+            <span class="demo-dot"></span>
+            <div class="demo-url">🔒 sitespourartisans.fr/coiffeur</div>
+          </div>
+          <div class="demo-preview">
+            <img src="/coiffeur-preview.jpg" alt="Démo site coiffeur" loading="lazy" />
+            <div class="demo-preview-overlay">
+              <a href="/coiffeur/" class="btn-voir-demo" target="_blank">Voir la démo complète →</a>
+            </div>
+          </div>
+          <div class="demo-footer">
+            <div class="demo-footer-info">
+              <div class="demo-icon" style="background:#fce7f3;">✂️</div>
+              <div>
+                <h4>Coiffeur / Salon</h4>
+                <p>Services · Galerie · WhatsApp</p>
+              </div>
+            </div>
+            <span class="demo-badge" style="background:#fce7f3; color:#9d174d;">En ligne</span>
+          </div>
         </div>
 
-        <div class="metier-card blanchisserie">
-          <div class="metier-icon">👕</div>
-          <h3>Pour les blanchisseries</h3>
-          <p>Expliquez vos services : nettoyage, pressing, retouches, ramassage et livraison. Mettez en avant vos tarifs, horaires et zone de livraison pour que vos clients demandent un devis ou commandent directement.</p>
-          <a href="#contact" class="btn-metier">Voir un exemple pour ce métier</a>
+        <!-- CARTE 3 : COURS PARTICULIERS -->
+        <div class="demo-card">
+          <div class="demo-browser-bar">
+            <span class="demo-dot"></span>
+            <span class="demo-dot"></span>
+            <span class="demo-dot"></span>
+            <div class="demo-url">🔒 sitespourartisans.fr/cours</div>
+          </div>
+          <div class="demo-preview">
+            <img src="/cours-preview.jpg" alt="Démo site cours particuliers" loading="lazy" />
+            <div class="demo-preview-overlay">
+              <a href="/cours/" class="btn-voir-demo" target="_blank">Voir la démo complète →</a>
+            </div>
+          </div>
+          <div class="demo-footer">
+            <div class="demo-footer-info">
+              <div class="demo-icon" style="background:#dbeafe;">📚</div>
+              <div>
+                <h4>Cours particuliers</h4>
+                <p>Langues · Tarifs · Témoignages</p>
+              </div>
+            </div>
+            <span class="demo-badge" style="background:#dbeafe; color:#1e3a8a;">En ligne</span>
+          </div>
         </div>
 
-      </div>
+      </div><!-- /demos-grid -->
+
+      <p style="text-align:center; color:var(--muted); font-size:0.88rem; margin-top:1.5rem;">
+        Je crée ce type de site pour tous les artisans : salons de beauté, blanchisseries, restaurants, garages…
+      </p>
     </div>
   </section>
 
-  <!-- EXEMPLE BOULANGERIE -->
-  <section class="exemple">
-    <div class="section-inner">
-      <div class="section-tag">Exemple concret</div>
-      <h2 class="section-title">Voici à quoi ressemble un site pour un artisan…</h2>
-      <p class="section-sub">Exemple : une boulangerie vitrine. Ce rendu, je le crée aussi pour coiffeurs, salons de beauté, blanchisseries et autres commerçants.</p>
-
-      <div class="exemple-card">
-        <div class="exemple-header">
-          <div class="exemple-logo">🥖</div>
-          <div>
-            <h3>Boulangerie La Baguette d'Or</h3>
-            <p>Meknès, Maroc – Artisan boulanger depuis 1998</p>
-          </div>
-        </div>
-        <div class="exemple-body">
-          <div class="exemple-col">
-            <h4>Nos produits</h4>
-            <ul>
-              <li>Pain de la journée</li>
-              <li>Viennoiseries</li>
-              <li>Tartes maison</li>
-              <li>Pâtisseries orientales</li>
-            </ul>
-          </div>
-          <div class="exemple-col">
-            <h4>Horaires</h4>
-            <ul>
-              <li>Lun–Sam : 6h – 20h</li>
-              <li>Dimanche : 6h – 13h</li>
-              <li>Commande WhatsApp</li>
-              <li>Livraison disponible</li>
-            </ul>
-          </div>
-          <div class="exemple-col">
-            <h4>Nous contacter</h4>
-            <ul>
-              <li>📞 +212 6 XX XX XX</li>
-              <li>💬 WhatsApp direct</li>
-              <li>📍 Google Maps intégré</li>
-              <li>✉️ Formulaire en ligne</li>
-            </ul>
-          </div>
-        </div>
-        <div class="exemple-footer">
-          <p>Ce que vous voyez ici, je le fais aussi pour : coiffeurs, salons de beauté, blanchisseries, garages, restaurants, etc.</p>
-          <a href="#contact" class="btn-orange">Créez votre site sur siteartisan.fr →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section class="process">
+  <section class="process" style="display:none">
     <div class="section-inner">
       <div class="section-tag">Comment ça marche ?</div>
       <h2 class="section-title">Votre site en 4 étapes simples</h2>
@@ -672,14 +1071,13 @@
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="cta-final">
+  <section class="cta-final" style="display:none">
     <div class="section-inner">
       <h2>Prêt à attirer plus de clients en ligne ?</h2>
       <p>Rejoignez les artisans qui ont déjà leur site vitrine. Démarrez dès aujourd'hui — c'est simple et rapide.</p>
       <div class="cta-buttons">
         <a href="#contact" class="btn-orange">Demander votre site vitrine →</a>
-        <a href="https://wa.me/VOTRENUMÉRO?text=Bonjour%2C%20je%20souhaite%20un%20site%20vitrine%20pour%20mon%20activité." class="btn-whatsapp" target="_blank" rel="noopener">
+        <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20souhaite%20un%20site%20vitrine%20pour%20mon%20activité." class="btn-whatsapp" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.5l5.797-1.52A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.804a9.787 9.787 0 01-4.988-1.362l-.358-.213-3.44.902.918-3.352-.233-.375A9.804 9.804 0 012.196 12C2.196 6.574 6.574 2.196 12 2.196S21.804 6.574 21.804 12 17.426 21.804 12 21.804z"/></svg>
           WhatsApp direct
         </a>
@@ -689,8 +1087,12 @@
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>siteartisan.fr</strong> — Création de sites vitrines pour artisans en France et au Maroc</p>
+    <p><strong>sitespourartisans.fr</strong> — Création de sites vitrines pour artisans en France, au Maroc et pays francophones</p>
     <p style="margin-top:0.5rem;">Coiffeurs · Salons de beauté · Blanchisseries · Boulangeries · et plus</p>
+    <p style="margin-top:0.5rem;">
+      <a href="https://wa.me/212699245542" style="color:#25d366; text-decoration:none;" target="_blank">💬 WhatsApp : +212 699 245 542</a>
+    </p>
+    <p style="margin-top:0.5rem; font-size:0.75rem; color:#6b7280;">Inscrit au Registre National des Auto-Entrepreneurs : 003405900000095. Tous droits réservés.</p>
   </footer>
 
   <!-- TOAST -->
@@ -717,20 +1119,67 @@
     const success = document.getElementById('formSuccess');
     const toast   = document.getElementById('toast');
 
+    /* Validation email en temps réel */
+    const emailInput = document.getElementById('email');
+    emailInput.addEventListener('blur', () => {
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+      emailInput.classList.toggle('valid', ok && emailInput.value.trim() !== '');
+      emailInput.classList.toggle('error', !ok && emailInput.value.trim() !== '');
+    });
+
+    /* Score lead (0-100) pour prioriser les contacts chauds */
+    function calcScore(data) {
+      let s = 0;
+      if (data.email)             s += 25;  // email = canal précieux
+      if (data.telephone)         s += 20;
+      if (data.nom_etablissement) s += 10;  // a déjà un nom = sérieux
+      if (data.metier && data.metier !== '') s += 10;
+      if (data.a_deja_site === 'Non') s += 10;          // pas de site = besoin direct
+      if (data.urgence === 'Dès que possible') s += 15; // chaud
+      else if (data.urgence === 'Dans le mois') s += 8;
+      if (data.budget && data.budget !== 'À discuter') s += 10;
+      if (data.message && data.message.length > 30)     s += 5;  // investit du temps
+      return Math.min(s, 100);
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = form.querySelector('.btn-submit');
+      const btn = document.getElementById('submitBtn');
+
+      /* Validation manuelle email */
+      const emailVal = emailInput.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        emailInput.classList.add('error');
+        emailInput.focus();
+        return;
+      }
+
       btn.disabled = true;
-      btn.textContent = 'Envoi en cours…';
+      btn.textContent = '⏳ Envoi en cours…';
+
+      const getRadio = (name) => {
+        const checked = document.querySelector(`input[name="${name}"]:checked`);
+        return checked ? checked.value : '';
+      };
 
       const data = {
-        nom:       document.getElementById('nom').value.trim(),
-        telephone: document.getElementById('telephone').value.trim(),
-        metier:    document.getElementById('metier').value,
-        ville:     document.getElementById('ville').value.trim(),
-        message:   document.getElementById('message').value.trim(),
-        date:      serverTimestamp()
+        nom:               document.getElementById('nom').value.trim(),
+        nom_etablissement: document.getElementById('nom_etablissement').value.trim(),
+        email:             emailVal,
+        telephone:         document.getElementById('telephone').value.trim(),
+        ville:             document.getElementById('ville').value.trim(),
+        metier:            document.getElementById('metier').value,
+        a_deja_site:       getRadio('a_deja_site'),
+        budget:            getRadio('budget'),
+        urgence:           getRadio('urgence'),
+        provenance:        document.getElementById('provenance').value,
+        message:           document.getElementById('message').value.trim(),
+        source_url:        window.location.href,
+        referrer:          document.referrer || 'direct',
+        date:              serverTimestamp()
       };
+
+      data.score = calcScore(data);
 
       try {
         await addDoc(collection(db, 'leads'), data);
@@ -740,7 +1189,7 @@
       } catch (err) {
         console.error('Erreur Firestore :', err);
         btn.disabled = false;
-        btn.textContent = 'Demander votre site vitrine →';
+        btn.textContent = 'Demander votre site vitrine gratuitement →';
         alert('Une erreur est survenue. Veuillez réessayer ou nous contacter par WhatsApp.');
       }
     });

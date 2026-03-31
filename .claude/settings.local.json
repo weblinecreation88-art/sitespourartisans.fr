@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(firebase deploy:*)",
+      "Bash(find \"D:/site prospet local/public\" -name \"*.html\" -exec sed -i 's/siteartisan\\\\.fr/sitepourartisans.fr/g' {} +)",
+      "Bash(find \"D:/site prospet local/public\" -name \"*.html\" -exec sed -i 's/sitepourartisans\\\\.fr/sitespourartisans.fr/g' {} +)",
+      "WebSearch",
+      "Bash(claude --version)",
+      "Bash(claude auth:*)",
+      "Bash(echo \"DISABLE_TELEMETRY=$DISABLE_TELEMETRY\")",
+      "Bash(echo \"CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=$CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC\")"
+    ]
+  }
+}

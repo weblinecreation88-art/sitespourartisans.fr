@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ── SEO PRIMAIRE ── -->
+  <title>Création site vitrine artisan à Meknès (Maroc) — sitespourartisans.fr</title>
+  <meta name="description" content="Vous êtes artisan à Meknès ? Obtenez un site vitrine professionnel en 3 jours : coiffeur, salon de beauté, blanchisserie, boulangerie. Devis gratuit sous 24h." />
+  <meta name="keywords" content="site vitrine Meknès, site web artisan Meknès, création site coiffeur Meknès, salon beauté Meknès, blanchisserie Meknès, siteartisan Maroc" />
+  <link rel="canonical" href="https://sitespourartisans.fr/maroc/meknes/" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Site vitrine artisan à Meknès — sitespourartisans.fr" />
+  <meta property="og:description" content="Créez votre site vitrine professionnel à Meknès en 3 jours. Visible sur Google, WhatsApp intégré, devis gratuit." />
+  <meta property="og:url"         content="https://sitespourartisans.fr/maroc/meknes/" />
+  <meta property="og:locale"      content="fr_MA" />
+
+  <!-- ── Schema.org LocalBusiness ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "sitespourartisans.fr",
+    "description": "Création de sites vitrines pour artisans et commerçants à Meknès, Maroc",
+    "url": "https://sitespourartisans.fr/maroc/meknes/",
+    "telephone": "+212699245542",
+    "areaServed": {
+      "@type": "City",
+      "name": "Meknès",
+      "addressCountry": "MA"
+    },
+    "serviceType": "Création de site vitrine",
+    "priceRange": "€",
+    "sameAs": ["https://wa.me/212699245542"]
+  }
+  </script>
+
+  <!-- ── BreadcrumbList ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil",       "item": "https://sitespourartisans.fr/" },
+      { "@type": "ListItem", "position": 2, "name": "Maroc",         "item": "https://sitespourartisans.fr/maroc/" },
+      { "@type": "ListItem", "position": 3, "name": "Meknès",        "item": "https://sitespourartisans.fr/maroc/meknes/" }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0f172a;
+      --teal:   #0ea5e9;
+      --orange: #f97316;
+      --green:  #22c55e;
+      --white:  #ffffff;
+      --bg:     #f8fafc;
+      --border: #e2e8f0;
+      --text:   #1e293b;
+      --muted:  #64748b;
+      --radius: 14px;
+      --gold:   #d97706;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,23,42,0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 1.15rem; font-weight: 800;
+      color: #fff; text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-brand span { color: var(--teal); }
+    .nav-links { display: flex; align-items: center; gap: 1.2rem; }
+    .nav-links a {
+      color: #94a3b8; font-size: 0.85rem; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: var(--orange); color: #fff !important;
+      padding: 0.45rem 1.1rem; border-radius: 8px;
+      font-weight: 700; font-size: 0.85rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #ea6c0a !important; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+    }
+    .breadcrumb-inner {
+      max-width: 1100px; margin: 0 auto;
+      font-size: 0.8rem; color: var(--muted);
+      display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+    }
+    .breadcrumb-inner a { color: var(--teal); text-decoration: none; }
+    .breadcrumb-inner a:hover { text-decoration: underline; }
+    .breadcrumb-inner span { color: var(--muted); }
+
+    /* ── HERO LOCAL ── */
+    .hero-local {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0f2744 100%);
+      padding: 4rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-local::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=1400&q=60') center/cover;
+      opacity: 0.08;
+    }
+    .hero-local-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 3rem; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(14,165,233,0.15);
+      border: 1px solid rgba(14,165,233,0.3);
+      color: var(--teal);
+      border-radius: 100px; padding: 0.3rem 0.9rem;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-local h1 {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 800; color: #fff;
+      line-height: 1.2; margin-bottom: 1rem;
+    }
+    .hero-local h1 em { color: var(--orange); font-style: normal; }
+    .hero-local .hero-desc {
+      font-size: 1rem; color: #cbd5e1;
+      line-height: 1.75; margin-bottom: 1.5rem;
+    }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 1.5rem;
+    }
+    .stat { text-align: center; }
+    .stat strong { display: block; font-size: 1.5rem; font-weight: 800; color: var(--orange); }
+    .stat span   { font-size: 0.78rem; color: #94a3b8; }
+
+    /* ── MINI FORM HERO ── */
+    .hero-form {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .hero-form h2 { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 0.25rem; }
+    .hero-form p  { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+    .hf-group { margin-bottom: 0.7rem; }
+    .hf-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    .hf-group input,
+    .hf-group select {
+      width: 100%; padding: 0.58rem 0.85rem;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: 0.88rem; color: var(--text);
+      background: var(--bg); transition: border-color 0.2s;
+    }
+    .hf-group input:focus,
+    .hf-group select:focus { outline: none; border-color: var(--teal); }
+    .btn-hero-submit {
+      width: 100%; background: var(--orange); color: #fff;
+      border: none; border-radius: 9px; padding: 0.85rem;
+      font-size: 0.95rem; font-weight: 800;
+      cursor: pointer; margin-top: 0.4rem;
+      box-shadow: 0 4px 16px rgba(249,115,22,0.4);
+      transition: background 0.2s;
+    }
+    .btn-hero-submit:hover { background: #ea6c0a; }
+    .hf-trust {
+      display: flex; gap: 0.8rem; justify-content: center;
+      margin-top: 0.6rem; flex-wrap: wrap;
+    }
+    .hf-trust span { font-size: 0.68rem; color: var(--muted); }
+
+    /* ── CONTENT ── */
+    .content-section {
+      background: var(--white);
+      padding: 4rem 2rem;
+    }
+    .content-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      background: #e0f2fe; color: var(--teal);
+      border-radius: 100px; padding: 0.25rem 0.85rem;
+      font-size: 0.73rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 800; color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Layout 2 colonnes */
+    .content-grid {
+      display: grid; grid-template-columns: 1fr 360px;
+      gap: 3rem; margin-top: 2.5rem; align-items: start;
+    }
+    .content-body p {
+      font-size: 0.97rem; color: var(--text);
+      line-height: 1.85; margin-bottom: 1.1rem;
+    }
+    .content-body strong { color: var(--navy); }
+    .content-body .highlight {
+      background: #fef3c7; border-left: 4px solid var(--gold);
+      padding: 1rem 1.2rem; border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0; font-size: 0.95rem;
+    }
+
+    /* Sidebar services */
+    .services-box {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .services-box h3 {
+      font-size: 0.95rem; font-weight: 800; color: var(--navy);
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+    }
+    .service-item:last-child { border-bottom: none; }
+    .service-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #e0f2fe; display: flex; align-items: center;
+      justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .service-item h4 { font-size: 0.85rem; font-weight: 700; color: var(--navy); }
+    .service-item p  { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+
+    /* ── QUARTIERS ── */
+    .quartiers-section {
+      background: var(--bg);
+      padding: 3.5rem 2rem;
+    }
+    .quartiers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-top: 1.8rem;
+    }
+    .quartier-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .quartier-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 4px 16px rgba(14,165,233,0.1);
+    }
+    .quartier-card .q-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+    .quartier-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
+    .quartier-card p  { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.5; }
+
+    /* ── MÉTIERS GRID ── */
+    .metiers-section {
+      background: var(--white);
+      padding: 3.5rem 2rem;
+    }
+    .metiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem; margin-top: 1.8rem;
+    }
+    .metier-pill {
+      display: flex; align-items: center; gap: 0.8rem;
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.2rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .metier-pill:hover {
+      border-color: var(--orange); background: #fff7ed;
+    }
+    .metier-pill .mp-icon { font-size: 1.5rem; }
+    .metier-pill h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
+    .metier-pill p  { font-size: 0.73rem; color: var(--muted); margin-top: 0.1rem; }
+
+    /* ── VILLES MAROC ── */
+    .villes-section {
+      background: var(--bg);
+      padding: 3.5rem 2rem;
+    }
+    .villes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-top: 1.8rem;
+    }
+    .ville-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 1rem;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: block;
+    }
+    .ville-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(14,165,233,0.12);
+    }
+    .ville-card .vc-flag { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .ville-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+    .ville-card p  { font-size: 0.73rem; color: var(--teal); font-weight: 600; margin-top: 0.2rem; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: linear-gradient(135deg, #0f172a, #1e3a5f);
+      padding: 4rem 2rem; text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800; color: #fff; margin-bottom: 0.8rem;
+    }
+    .cta-section p {
+      font-size: 1rem; color: #94a3b8;
+      margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-orange {
+      display: inline-block;
+      background: var(--orange); color: #fff;
+      padding: 0.85rem 1.8rem; border-radius: 10px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(249,115,22,0.4);
+      transition: background 0.2s;
+    }
+    .btn-orange:hover { background: #ea6c0a; }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #25d366; color: #fff;
+      padding: 0.85rem 1.8rem; border-radius: 10px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-whatsapp:hover { background: #1db954; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #94a3b8;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.83rem;
+      line-height: 2;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer strong { color: #fff; }
+    .footer-links {
+      display: flex; gap: 1.5rem; justify-content: center;
+      flex-wrap: wrap; margin: 0.8rem 0;
+    }
+    .footer-links a { font-size: 0.8rem; color: #64748b; }
+    .footer-links a:hover { color: var(--teal); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-local-inner { grid-template-columns: 1fr; }
+      .content-grid { grid-template-columns: 1fr; }
+      .quartiers-grid { grid-template-columns: repeat(2, 1fr); }
+      .metiers-grid  { grid-template-columns: repeat(2, 1fr); }
+      .villes-grid   { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      nav { padding: 0 1rem; }
+      .hero-local { padding: 2.5rem 1.2rem 2rem; }
+      .hero-stats { gap: 1rem; }
+      .quartiers-grid,
+      .villes-grid { grid-template-columns: repeat(2, 1fr); }
+      .metiers-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="/" class="nav-brand">site<span>artisan</span>.fr</a>
+    <div class="nav-links">
+      <a href="/maroc/">Maroc</a>
+      <a href="/france/">France</a>
+      <a href="/#contact" class="nav-cta">Devis gratuit</a>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="/">Accueil</a>
+      <span>›</span>
+      <a href="/maroc/">Maroc</a>
+      <span>›</span>
+      <strong>Meknès</strong>
+    </div>
+  </div>
+
+  <!-- HERO LOCAL -->
+  <section class="hero-local">
+    <div class="hero-local-inner">
+
+      <!-- Texte gauche -->
+      <div>
+        <div class="hero-badge">🇲🇦 Meknès · Maroc</div>
+        <h1>Votre site vitrine d'artisan à <em>Meknès</em> — livré en 3 jours</h1>
+        <p class="hero-desc">
+          Coiffeur, salon de beauté, blanchisserie, boulangerie ou commerce local à Meknès ?
+          Je crée votre site professionnel, visible sur Google, avec WhatsApp intégré et
+          Google Maps — pour que vos clients vous trouvent avant vos concurrents.
+        </p>
+        <div class="hero-stats">
+          <div class="stat"><strong>3</strong><span>jours livraison</span></div>
+          <div class="stat"><strong>100%</strong><span>mobile</span></div>
+          <div class="stat"><strong>SEO</strong><span>local Meknès</span></div>
+          <div class="stat"><strong>24h</strong><span>de réponse</span></div>
+        </div>
+      </div>
+
+      <!-- Formulaire droite -->
+      <div>
+        <div class="hero-form">
+          <h2>🚀 Demandez votre site à Meknès</h2>
+          <p>Devis gratuit — réponse sous 24h</p>
+          <div class="hf-group">
+            <label for="hf-nom">Votre nom *</label>
+            <input type="text" id="hf-nom" placeholder="Prénom Nom" autocomplete="name" />
+          </div>
+          <div class="hf-group">
+            <label for="hf-email">📧 Email *</label>
+            <input type="email" id="hf-email" placeholder="vous@gmail.com" autocomplete="email" />
+          </div>
+          <div class="hf-group">
+            <label for="hf-tel">📱 WhatsApp *</label>
+            <input type="tel" id="hf-tel" placeholder="+212 6 00 00 00 00" autocomplete="tel" />
+          </div>
+          <div class="hf-group">
+            <label for="hf-metier">Votre métier *</label>
+            <select id="hf-metier">
+              <option value="">-- Choisissez --</option>
+              <option>✂️ Coiffeur / Coiffeuse</option>
+              <option>💅 Salon de beauté / Onglerie</option>
+              <option>👕 Blanchisserie / Pressing</option>
+              <option>🥐 Boulangerie / Pâtisserie</option>
+              <option>🍽️ Restaurant / Snack</option>
+              <option>➕ Autre commerce local</option>
+            </select>
+          </div>
+          <button class="btn-hero-submit" onclick="soumettreMeknes()">
+            Demander mon site à Meknès →
+          </button>
+          <div class="hf-trust">
+            <span>🔒 Confidentiel</span>
+            <span>✅ Sans engagement</span>
+            <span>⏱ Réponse 24h</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTENU PRINCIPAL -->
+  <section class="content-section">
+    <div class="content-inner">
+      <div class="section-tag">Pourquoi sitespourartisans.fr à Meknès ?</div>
+      <h2 class="section-title">Un site vitrine conçu pour les artisans de Meknès</h2>
+
+      <div class="content-grid">
+
+        <!-- Corps de texte SEO -->
+        <div class="content-body">
+          <p>
+            <strong>Meknès</strong>, ville impériale nichée entre Fès et Rabat, abrite un tissu commercial
+            et artisanal d'une richesse exceptionnelle. De la <strong>Médina</strong> animée jusqu'aux
+            quartiers modernes comme <strong>Hamria</strong> et <strong>Zitoune</strong>, des milliers de
+            commerçants, coiffeurs, esthéticiennes et boulangers font vivre l'économie locale au quotidien.
+            Pourtant, la grande majorité n'a toujours pas de présence en ligne digne de leur savoir-faire.
+          </p>
+          <p>
+            Aujourd'hui, vos futurs clients cherchent <em>« coiffeur Meknès »</em>,
+            <em>« salon de beauté près de Bab Mansour »</em> ou <em>« pressing Hamria »</em> depuis leur
+            smartphone — avant même de quitter leur domicile. Sans site web, vous n'apparaissez pas.
+            Avec <strong>sitespourartisans.fr</strong>, vous existez en ligne en seulement 3 jours.
+          </p>
+
+          <div class="highlight">
+            📍 Exemple : un salon de coiffure installé <strong>Avenue Hassan II, 50000 Meknès</strong>,
+            avec ses horaires, sa galerie photos et son bouton WhatsApp — visible en premier sur Google
+            pour les recherches locales de votre quartier.
+          </div>
+
+          <p>
+            Nous ne créons pas de templates génériques. Chaque site est <strong>rédigé et conçu
+            pour votre activité</strong> à Meknès : vos services, vos tarifs, votre adresse exacte,
+            votre numéro WhatsApp mis en avant. Le tout optimisé pour le référencement local
+            marocain — Google Maps, mots-clés Meknès, vitesse mobile — dès la mise en ligne.
+          </p>
+          <p>
+            Que vous soyez dans le quartier <strong>Nouvelle Médina</strong>, sur l'<strong>Avenue
+            Moulay Ismail</strong> ou dans le secteur de <strong>Hay Salam</strong>, votre site
+            sera adapté à votre adresse réelle et à vos clients de proximité.
+          </p>
+          <p>
+            <strong>Artisan à Meknès, demandez votre devis gratuit</strong> — je vous réponds
+            personnellement sous 24 heures par email ou WhatsApp.
+          </p>
+        </div>
+
+        <!-- Sidebar services inclus -->
+        <aside>
+          <div class="services-box">
+            <h3>✅ Tout inclus dans votre site</h3>
+            <div class="service-item">
+              <div class="service-icon">📱</div>
+              <div>
+                <h4>Design responsive</h4>
+                <p>Parfait sur mobile, tablette et ordinateur</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">✍️</div>
+              <div>
+                <h4>Textes sur mesure</h4>
+                <p>Rédigés pour votre métier et votre ville</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">💬</div>
+              <div>
+                <h4>Bouton WhatsApp</h4>
+                <p>Vos clients vous écrivent en un clic</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">🗺️</div>
+              <div>
+                <h4>Google Maps intégré</h4>
+                <p>Votre adresse exacte à Meknès visible</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">🔍</div>
+              <div>
+                <h4>SEO local Meknès</h4>
+                <p>Optimisé pour Google Maroc dès le jour 1</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">🖼️</div>
+              <div>
+                <h4>Galerie photos</h4>
+                <p>Vos produits et votre espace mis en valeur</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">⚡</div>
+              <div>
+                <h4>Livraison en 3 jours</h4>
+                <p>Site en ligne rapidement, sans attente</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUARTIERS DE MEKNÈS -->
+  <section class="quartiers-section">
+    <div class="content-inner">
+      <div class="section-tag">Zones couvertes</div>
+      <h2 class="section-title">Artisans de tous les quartiers de Meknès</h2>
+      <p style="color:var(--muted); font-size:0.95rem; margin-top:0.4rem;">
+        Votre site vitrine est référencé sur votre quartier exact, pas juste sur « Meknès ».
+      </p>
+      <div class="quartiers-grid">
+        <div class="quartier-card">
+          <div class="q-icon">🕌</div>
+          <h4>Médina &amp; Bab Mansour</h4>
+          <p>Commerces traditionnels, artisanat local, souks</p>
+        </div>
+        <div class="quartier-card">
+          <div class="q-icon">🏘️</div>
+          <h4>Hamria</h4>
+          <p>Quartier actif, commerces de proximité, salons</p>
+        </div>
+        <div class="quartier-card">
+          <div class="q-icon">🌿</div>
+          <h4>Zitoune</h4>
+          <p>Zone résidentielle, services du quotidien</p>
+        </div>
+        <div class="quartier-card">
+          <div class="q-icon">🏙️</div>
+          <h4>Nouvelle Médina</h4>
+          <p>Commerces modernes, coiffeurs, pressings</p>
+        </div>
+        <div class="quartier-card">
+          <div class="q-icon">🛣️</div>
+          <h4>Av. Moulay Ismail</h4>
+          <p>Axe principal, visibilité maximale</p>
+        </div>
+        <div class="quartier-card">
+          <div class="q-icon">🏡</div>
+          <h4>Hay Salam</h4>
+          <p>Quartier résidentiel, forte clientèle locale</p>
+        </div>
+        <div class="quartier-card">
+          <div class="q-icon">🏬</div>
+          <h4>Centre-ville</h4>
+          <p>Zone de passage, restaurants, boutiques</p>
+        </div>
+        <div class="quartier-card">
+          <div class="q-icon">📍</div>
+          <h4>Votre quartier</h4>
+          <p>Nous référençons votre adresse exacte sur Google</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTIERS COUVERTS -->
+  <section class="metiers-section">
+    <div class="content-inner">
+      <div class="section-tag">Métiers</div>
+      <h2 class="section-title">Un site vitrine pour chaque métier à Meknès</h2>
+      <div class="metiers-grid">
+        <a href="/coiffeur/" class="metier-pill" target="_blank">
+          <div class="mp-icon">✂️</div>
+          <div><h4>Coiffeur / Salon</h4><p>Voir un exemple de site</p></div>
+        </a>
+        <a href="/#contact" class="metier-pill">
+          <div class="mp-icon">💅</div>
+          <div><h4>Salon de beauté</h4><p>Soins, onglerie, épilation</p></div>
+        </a>
+        <a href="/#contact" class="metier-pill">
+          <div class="mp-icon">👕</div>
+          <div><h4>Blanchisserie / Pressing</h4><p>Services, tarifs, livraison</p></div>
+        </a>
+        <a href="/boulangerie/" class="metier-pill" target="_blank">
+          <div class="mp-icon">🥐</div>
+          <div><h4>Boulangerie / Pâtisserie</h4><p>Voir un exemple de site</p></div>
+        </a>
+        <a href="/#contact" class="metier-pill">
+          <div class="mp-icon">🍽️</div>
+          <div><h4>Restaurant / Snack</h4><p>Menu, commande, contact</p></div>
+        </a>
+        <a href="/cours/" class="metier-pill" target="_blank">
+          <div class="mp-icon">📚</div>
+          <div><h4>Cours particuliers</h4><p>Voir un exemple de site</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTRES VILLES MAROC — maillage interne -->
+  <section class="villes-section">
+    <div class="content-inner">
+      <div class="section-tag">Maillage interne — Maroc</div>
+      <h2 class="section-title">Nous créons aussi des sites vitrines dans ces villes</h2>
+      <div class="villes-grid">
+        <a href="/maroc/casablanca/" class="ville-card">
+          <div class="vc-flag">🏙️</div>
+          <h4>Casablanca</h4>
+          <p>Site vitrine artisan →</p>
+        </a>
+        <a href="/maroc/marrakech/" class="ville-card">
+          <div class="vc-flag">🌴</div>
+          <h4>Marrakech</h4>
+          <p>Site vitrine artisan →</p>
+        </a>
+        <a href="/maroc/fes/" class="ville-card">
+          <div class="vc-flag">🕌</div>
+          <h4>Fès</h4>
+          <p>Site vitrine artisan →</p>
+        </a>
+        <a href="/maroc/rabat/" class="ville-card">
+          <div class="vc-flag">🏛️</div>
+          <h4>Rabat</h4>
+          <p>Site vitrine artisan →</p>
+        </a>
+        <a href="/maroc/tanger/" class="ville-card">
+          <div class="vc-flag">⚓</div>
+          <h4>Tanger</h4>
+          <p>Site vitrine artisan →</p>
+        </a>
+        <a href="/maroc/agadir/" class="ville-card">
+          <div class="vc-flag">🌊</div>
+          <h4>Agadir</h4>
+          <p>Site vitrine artisan →</p>
+        </a>
+        <a href="/maroc/oujda/" class="ville-card">
+          <div class="vc-flag">🌾</div>
+          <h4>Oujda</h4>
+          <p>Site vitrine artisan →</p>
+        </a>
+        <a href="/maroc/" class="ville-card">
+          <div class="vc-flag">🇲🇦</div>
+          <h4>Toutes les villes</h4>
+          <p>Voir toutes les pages →</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <h2>Artisan à Meknès ? Démarrez dès aujourd'hui.</h2>
+    <p>Site vitrine professionnel, visible sur Google, livré en 3 jours. Devis gratuit, sans engagement.</p>
+    <div class="cta-buttons">
+      <a href="/#contact" class="btn-orange">Demander mon site vitrine →</a>
+      <a href="https://wa.me/212699245542?text=Bonjour%2C%20je%20suis%20artisan%20%C3%A0%20Mekn%C3%A8s%20et%20je%20souhaite%20un%20site%20vitrine." class="btn-whatsapp" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.5l5.797-1.52A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.804a9.787 9.787 0 01-4.988-1.362l-.358-.213-3.44.902.918-3.352-.233-.375A9.804 9.804 0 012.196 12C2.196 6.574 6.574 2.196 12 2.196S21.804 6.574 21.804 12 17.426 21.804 12 21.804z"/></svg>
+        WhatsApp Meknès
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>sitespourartisans.fr</strong> — Création de sites vitrines pour artisans en France, au Maroc et pays francophones</p>
+    <div class="footer-links">
+      <a href="/">Accueil</a>
+      <a href="/maroc/">Maroc</a>
+      <a href="/maroc/casablanca/">Casablanca</a>
+      <a href="/maroc/marrakech/">Marrakech</a>
+      <a href="/maroc/fes/">Fès</a>
+      <a href="/maroc/rabat/">Rabat</a>
+      <a href="/france/">France</a>
+    </div>
+    <p>
+      <a href="https://wa.me/212699245542" target="_blank">💬 WhatsApp : +212 699 245 542</a>
+    </p>
+    <p style="margin-top:0.5rem; font-size:0.72rem; color:#374151;">
+      Inscrit au Registre National des Auto-Entrepreneurs : 003405900000095. Tous droits réservés.
+    </p>
+  </footer>
+
+  <script>
+    function soumettreMeknes() {
+      const nom    = document.getElementById('hf-nom').value.trim();
+      const email  = document.getElementById('hf-email').value.trim();
+      const tel    = document.getElementById('hf-tel').value.trim();
+      const metier = document.getElementById('hf-metier').value;
+
+      if (!nom || !email || !tel || !metier) {
+        alert('Merci de remplir tous les champs obligatoires.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Veuillez saisir une adresse email valide.');
+        document.getElementById('hf-email').focus();
+        return;
+      }
+
+      /* Redirige vers la page principale avec le formulaire complet pré-rempli */
+      const msg = encodeURIComponent(
+        `Bonjour, je suis artisan à Meknès (${metier.replace(/[^\w\s]/gi,'').trim()}) et je souhaite un site vitrine. Mon nom : ${nom}.`
+      );
+      window.location.href = `https://wa.me/212699245542?text=${msg}`;
+    }
+  </script>
+
+</body>
+</html>
